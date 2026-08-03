@@ -1,250 +1,115 @@
 /* ==========================================================================
-   CURRICULUM — the IASSC Certified Lean Six Sigma Black Belt body of knowledge.
+   CURRICULUM — the SSDSI Lean Six Sigma Black Belt FAST TRACK.
+   33 units. IDs match how the course names them, so "Module 12" is MOD-12.
    This file is STATIC. Do not edit it during study sessions.
-   Every topic here maps to one line item in the official ICBB BOK.
    ========================================================================== */
 
 window.ICBB_CURRICULUM = {
-  exam: {
-    name: "IASSC Certified Lean Six Sigma Black Belt (ICBB)",
-    questions: 150,
-    minutes: 240,
-    closedBook: true
+
+  course: {
+    name: "Lean Six Sigma Black Belt FAST TRACK",
+    provider: "SSDSI",
+    totalUnits: 33
   },
 
-  phases: [
+  /* Course size, from the SSDSI product page. */
+  effort: {
+    videoMinutes: 610,
+    projectHours: 40
+  },
+
+  /* Gate 2 — the SSDSI internal exam. Not the IASSC exam. */
+  exam: {
+    name: "SSDSI Black Belt Examination",
+    questions: 50,
+    pool: 100,
+    minutes: 60,
+    minutesDisputed: 100,
+    passMark: 80,
+    attempts: 2,
+    proctored: false,
+    note: "Two attempts only \u2014 failing twice fails the course and forfeits the project. Course portal says 60 minutes, SSDSI product page says 100. Confirm which."
+  },
+
+  /* Gate 3. Cannot begin until the exam is passed. */
+  project: {
+    name: "SSDSI Black Belt Project",
+    workbook: "DMAIC Phase Deliverables (MS Excel)",
+    estimatedHours: 40,
+    solo: true,
+    note: "Solo \u2014 candidates cannot work as a group and only one is certified per project. Around 40 hours of work."
+  },
+
+  /* ------------------------------------------------------------------------
+     DEADLINE — genuinely unresolved. SSDSI's own materials contradict each
+     other. The product page sells "180 days of project mentorship", which
+     implies the clock starts at the project. The milestone text only says the
+     project must finish "within 180-day certification deadline", naming no
+     start point.
+
+       mode "enrolment" — pessimistic, clock already running
+       mode "project"   — optimistic, clock starts when the exam is passed
+       mode "unknown"   — show both, assert neither   <-- current
+
+     Once SSDSI answers, set mode and confirmed:true and the dashboard stops
+     hedging.
+     ---------------------------------------------------------------------- */
+  deadline: {
+    mode: "unknown",
+    days: 180,
+    confirmed: false,
+    enrolmentStart: "2026-04-22",
+    enrolmentStartIsGuess: true,
+    projectStart: null,
+    caveat: "SSDSI's materials contradict each other on when the 180 days begin."
+  },
+
+  modules: [
     {
-      id: "D",
-      name: "Define",
-      weight: 15,
-      groups: [
-        {
-          name: "The Basics of Six Sigma",
-          topics: [
-            { id: "D-01", name: "Meanings of Six Sigma" },
-            { id: "D-02", name: "History of Six Sigma & continuous improvement" },
-            { id: "D-03", name: "Deliverables of a Lean Six Sigma project" },
-            { id: "D-04", name: "Problem-solving strategy Y = f(x)" },
-            { id: "D-05", name: "Voice of the customer, business & employee" }
-          ]
-        },
-        {
-          name: "The Fundamentals of Six Sigma",
-          topics: [
-            { id: "D-06", name: "Defining a process" },
-            { id: "D-07", name: "Critical to Quality characteristics (CTQ)" },
-            { id: "D-08", name: "Cost of Poor Quality (COPQ)" },
-            { id: "D-09", name: "Pareto analysis (80:20 rule)" },
-            { id: "D-10", name: "Basic Six Sigma metrics — DPU, DPMO, RTY, sigma level" }
-          ]
-        },
-        {
-          name: "Selecting Lean Six Sigma Projects",
-          topics: [
-            { id: "D-11", name: "Business case & project charter" },
-            { id: "D-12", name: "Developing project metrics" },
-            { id: "D-13", name: "Financial evaluation & benefits capture" }
-          ]
-        },
-        {
-          name: "The Lean Enterprise",
-          topics: [
-            { id: "D-14", name: "Understanding Lean & its history" },
-            { id: "D-15", name: "Lean and Six Sigma together" },
-            { id: "D-16", name: "The seven elements of waste" },
-            { id: "D-17", name: "5S" }
-          ]
-        }
+      id: "GB",
+      name: "Green Belt",
+      subtitle: "Module 1 \u00b7 17 units",
+      units: [
+        { id: "INTRO",  n: 1,  name: "Black Belt FAST-TRACK introduction", kind: "admin" },
+        { id: "MOD-00", n: 2,  name: "Welcome to the course", kind: "admin" },
+        { id: "MOD-01", n: 3,  name: "Lean Six Sigma overview", kind: "core", phase: "Define" },
+        { id: "MOD-02", n: 4,  name: "Project selection", kind: "core", phase: "Define", project: true },
+        { id: "MOD-03", n: 5,  name: "Project charter", kind: "core", phase: "Define", project: true },
+        { id: "MOD-04", n: 6,  name: "SIPOC(R)", kind: "core", phase: "Define", project: true },
+        { id: "MOD-05", n: 7,  name: "LEAN & value stream", kind: "core", phase: "Define" },
+        { id: "MOD-06", n: 8,  name: "Process mapping", kind: "core", phase: "Measure", project: true },
+        { id: "MOD-07", n: 9,  name: "Cause & effect matrix", kind: "core", phase: "Measure", project: true },
+        { id: "MOD-08", n: 10, name: "Failure mode and effects analysis", kind: "core", phase: "Measure", project: true },
+        { id: "MOD-09", n: 11, name: "Basic statistics", kind: "core", phase: "Measure" },
+        { id: "MOD-10", n: 12, name: "Basic quality tools", kind: "core", phase: "Measure" },
+        { id: "MOD-11", n: 13, name: "Measurement system analysis", kind: "core", phase: "Measure" },
+        { id: "MOD-12", n: 14, name: "Capability analysis", kind: "core", phase: "Measure", project: true },
+        { id: "MOD-13", n: 15, name: "z-Test, ANOVA and chi-squared", kind: "core", phase: "Analyze", project: true },
+        { id: "MOD-14", n: 16, name: "Correlation & regression analysis", kind: "core", phase: "Analyze", project: true },
+        { id: "MOD-15", n: 17, name: "Controlling the process", kind: "core", phase: "Control", project: true }
       ]
     },
-
     {
-      id: "M",
-      name: "Measure",
-      weight: 20,
-      groups: [
-        {
-          name: "Process Definition",
-          topics: [
-            { id: "M-01", name: "Cause & effect / fishbone diagrams" },
-            { id: "M-02", name: "Process mapping & SIPOC" },
-            { id: "M-03", name: "X-Y diagram (cause & effect matrix)" },
-            { id: "M-04", name: "Failure Modes & Effects Analysis (FMEA)" }
-          ]
-        },
-        {
-          name: "Six Sigma Statistics",
-          topics: [
-            { id: "M-05", name: "Basic statistics" },
-            { id: "M-06", name: "Descriptive statistics" },
-            { id: "M-07", name: "Normal distribution & normality testing" },
-            { id: "M-08", name: "Graphical analysis" }
-          ]
-        },
-        {
-          name: "Measurement System Analysis",
-          topics: [
-            { id: "M-09", name: "Precision & accuracy" },
-            { id: "M-10", name: "Bias, linearity & stability" },
-            { id: "M-11", name: "Gage repeatability & reproducibility" },
-            { id: "M-12", name: "Variable & attribute MSA" }
-          ]
-        },
-        {
-          name: "Process Capability",
-          topics: [
-            { id: "M-13", name: "Capability analysis — Cp, Cpk, Pp, Ppk" },
-            { id: "M-14", name: "The concept of stability" },
-            { id: "M-15", name: "Attribute & discrete capability" },
-            { id: "M-16", name: "Monitoring techniques" }
-          ]
-        }
-      ]
-    },
-
-    {
-      id: "A",
-      name: "Analyze",
-      weight: 20,
-      groups: [
-        {
-          name: "Patterns of Variation",
-          topics: [
-            { id: "A-01", name: "Multi-vari analysis" },
-            { id: "A-02", name: "Classes of distributions" }
-          ]
-        },
-        {
-          name: "Inferential Statistics",
-          topics: [
-            { id: "A-03", name: "Understanding inference" },
-            { id: "A-04", name: "Sampling techniques & uses" },
-            { id: "A-05", name: "Central limit theorem" }
-          ]
-        },
-        {
-          name: "Hypothesis Testing",
-          topics: [
-            { id: "A-06", name: "Goals of hypothesis testing" },
-            { id: "A-07", name: "Statistical vs. practical significance" },
-            { id: "A-08", name: "Risk — alpha & beta" },
-            { id: "A-09", name: "Choosing the right hypothesis test" }
-          ]
-        },
-        {
-          name: "Hypothesis Testing — Normal Data",
-          topics: [
-            { id: "A-10", name: "1 & 2 sample t-tests" },
-            { id: "A-11", name: "1 sample variance" },
-            { id: "A-12", name: "One-way ANOVA" }
-          ]
-        },
-        {
-          name: "Hypothesis Testing — Non-Normal Data",
-          topics: [
-            { id: "A-13", name: "Mann-Whitney & Kruskal-Wallis" },
-            { id: "A-14", name: "Mood's median & Friedman" },
-            { id: "A-15", name: "1 sample sign & 1 sample Wilcoxon" },
-            { id: "A-16", name: "One & two sample proportion" },
-            { id: "A-17", name: "Chi-squared & contingency tables" },
-            { id: "A-18", name: "Test of equal variances" }
-          ]
-        }
-      ]
-    },
-
-    {
-      id: "I",
-      name: "Improve",
-      weight: 25,
-      groups: [
-        {
-          name: "Simple Linear Regression",
-          topics: [
-            { id: "I-01", name: "Correlation" },
-            { id: "I-02", name: "Regression equations" },
-            { id: "I-03", name: "Residuals analysis — simple" }
-          ]
-        },
-        {
-          name: "Multiple Regression Analysis",
-          topics: [
-            { id: "I-04", name: "Non-linear regression" },
-            { id: "I-05", name: "Multiple linear regression" },
-            { id: "I-06", name: "Confidence & prediction intervals" },
-            { id: "I-07", name: "Residuals analysis — multiple" },
-            { id: "I-08", name: "Data transformation & Box-Cox" },
-            { id: "I-09", name: "Stepwise regression" },
-            { id: "I-10", name: "Logistic regression" }
-          ]
-        },
-        {
-          name: "Designed Experiments",
-          topics: [
-            { id: "I-11", name: "Experiment objectives" },
-            { id: "I-12", name: "Experimental methods" },
-            { id: "I-13", name: "DOE design considerations" }
-          ]
-        },
-        {
-          name: "Full Factorial Experiments",
-          topics: [
-            { id: "I-14", name: "2^k full factorial designs" },
-            { id: "I-15", name: "Linear & quadratic mathematical models" },
-            { id: "I-16", name: "Balanced & orthogonal designs" },
-            { id: "I-17", name: "Fit, diagnostics & centre points" }
-          ]
-        },
-        {
-          name: "Fractional Factorial Experiments",
-          topics: [
-            { id: "I-18", name: "Fractional factorial designs" },
-            { id: "I-19", name: "Confounding effects" },
-            { id: "I-20", name: "Experimental resolution" }
-          ]
-        }
-      ]
-    },
-
-    {
-      id: "C",
-      name: "Control",
-      weight: 20,
-      groups: [
-        {
-          name: "Lean Controls",
-          topics: [
-            { id: "C-01", name: "Control methods for 5S" },
-            { id: "C-02", name: "Kanban" },
-            { id: "C-03", name: "Poka-yoke" }
-          ]
-        },
-        {
-          name: "Statistical Process Control",
-          topics: [
-            { id: "C-04", name: "Data collection for SPC" },
-            { id: "C-05", name: "I-MR chart" },
-            { id: "C-06", name: "Xbar-R chart" },
-            { id: "C-07", name: "X-S chart" },
-            { id: "C-08", name: "U chart" },
-            { id: "C-09", name: "P chart" },
-            { id: "C-10", name: "NP chart" },
-            { id: "C-11", name: "CuSum chart" },
-            { id: "C-12", name: "EWMA chart" },
-            { id: "C-13", name: "Control chart anatomy" },
-            { id: "C-14", name: "Subgroups, variation & sampling" },
-            { id: "C-15", name: "Centre line & control limit calculations" },
-            { id: "C-16", name: "Selecting the right control chart" }
-          ]
-        },
-        {
-          name: "Six Sigma Control Plans",
-          topics: [
-            { id: "C-17", name: "Cost benefit analysis" },
-            { id: "C-18", name: "Elements of the control plan" },
-            { id: "C-19", name: "Elements of the response plan" }
-          ]
-        }
+      id: "BB",
+      name: "Black Belt",
+      subtitle: "Module 2 \u00b7 16 units",
+      units: [
+        { id: "MOD-16", n: 1,  name: "Green Belt review", kind: "review" },
+        { id: "MOD-17", n: 2,  name: "Power & sample size", kind: "core", phase: "Analyze" },
+        { id: "MOD-18", n: 3,  name: "Introduction to DOE", kind: "core", phase: "Improve" },
+        { id: "MOD-19", n: 4,  name: "DOE statistics and concepts", kind: "core", phase: "Improve" },
+        { id: "MOD-20", n: 5,  name: "Full factorial DOE", kind: "core", phase: "Improve" },
+        { id: "MOD-21", n: 6,  name: "Full factorial DOE exercise", kind: "exercise", phase: "Improve" },
+        { id: "MOD-22", n: 7,  name: "Fractional factorial DOE", kind: "core", phase: "Improve" },
+        { id: "MOD-23", n: 8,  name: "Non-parametric data", kind: "core", phase: "Analyze" },
+        { id: "MOD-24", n: 9,  name: "Advanced regression", kind: "core", phase: "Improve" },
+        { id: "MOD-25", n: 10, name: "Waste (muda) elimination", kind: "core", phase: "Improve" },
+        { id: "MOD-26", n: 11, name: "Value stream mapping", kind: "core", phase: "Improve", project: true },
+        { id: "MOD-27", n: 12, name: "Flow and TAKT time", kind: "core", phase: "Improve" },
+        { id: "MOD-28", n: 13, name: "Pull and Kanban", kind: "core", phase: "Control" },
+        { id: "MOD-29", n: 14, name: "5S (visual management)", kind: "core", phase: "Control" },
+        { id: "MOD-30", n: 15, name: "Implementation & control plan", kind: "core", phase: "Control", project: true },
+        { id: "EXAM-PREP", n: 16, name: "Fast-Track to Black Belt examination", kind: "exam" }
       ]
     }
   ],
@@ -252,8 +117,24 @@ window.ICBB_CURRICULUM = {
   /* Score meanings. Claude assigns these during debrief — never self-reported. */
   scale: [
     { score: 0, label: "Untouched", note: "Not studied yet." },
-    { score: 1, label: "Read", note: "Seen it, cannot explain it unaided." },
+    { score: 1, label: "Watched", note: "Went through it, cannot explain it unaided." },
     { score: 2, label: "Explained", note: "Can explain it, shaky on when to apply it." },
     { score: 3, label: "Applied", note: "Can explain it and choose it correctly in a scenario." }
+  ],
+
+  /* ------------------------------------------------------------------------
+     IASSC GAP — the course covers roughly 40% of the IASSC ICBB exam.
+     This is material SSDSI does not teach. Only relevant if he later decides
+     to sit the IASSC exam as a second, separate goal.
+     ---------------------------------------------------------------------- */
+  iasscGap: [
+    "Multi-vari analysis and classes of distributions",
+    "The hypothesis testing framework \u2014 alpha & beta risk, test selection logic",
+    "1 & 2 sample t-tests and 1 sample variance (the course teaches z-test instead)",
+    "Named non-parametric tests \u2014 Mann-Whitney, Kruskal-Wallis, Mood's median, Friedman, sign, Wilcoxon",
+    "Test of equal variances",
+    "Logistic regression, Box-Cox transformation, stepwise regression",
+    "Individual control chart types \u2014 I-MR, Xbar-R, X-S, U, P, NP, CuSum, EWMA",
+    "Six Sigma metrics in depth \u2014 DPU, DPMO, RTY, COPQ"
   ]
 };

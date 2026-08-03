@@ -1,22 +1,30 @@
 /* ==========================================================================
-   LOG — study history and topic scores.
+   LOG — study history, unit scores, milestone status.
    This is the ONLY data file that changes. Claude Code writes to it after
-   each debrief. Do not edit by hand unless you know what you're doing.
-
-   scores:   topic id -> { s: 0-3, seen: ["2026-08-04"], last: "2026-08-04" }
-   sessions: newest last.
+   each debrief. Do not edit by hand.
    ========================================================================== */
 
 window.ICBB_LOG = {
-  /* Where you are right now. Claude Code updates this at the end of a debrief. */
-  plan: {
-    nextUp: ["D-01", "D-02", "D-03", "D-04", "D-05"],
-    focusPhase: "D",
-    note: "First block. Start with the Define basics — they are the vocabulary everything else uses."
+
+  /* Units marked complete in the SSDSI portal. Watched is not the same as
+     learned — a unit only counts toward exam readiness once it scores 3. */
+  watched: ["INTRO", "MOD-00", "MOD-01", "MOD-02", "MOD-03"],
+
+  /* Unit scores, set by Claude during debrief. Absent = 0. */
+  scores: {},
+
+  /* Milestone status: "todo" | "active" | "done" */
+  milestones: {
+    coursework: { status: "active", note: "5 of 33 units watched." },
+    exam:       { status: "todo",   note: "Locked until the coursework is done. Two attempts only." },
+    project:    { status: "todo",   note: "Locked until the exam is passed. Scope it early anyway." }
   },
 
-  /* Topic scores. Absent = never touched = 0. */
-  scores: {},
+  /* What to do in the next one-hour block. */
+  plan: {
+    nextUp: ["MOD-04", "MOD-05"],
+    note: "SIPOC and the value stream. Both are project deliverables — build them against a real Social Current process, not the course example."
+  },
 
   /* One entry per one-hour block. */
   sessions: []
