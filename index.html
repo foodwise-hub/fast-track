@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICBB Track — Black Belt study log</title>
+<meta name="description" content="Study tracker for the IASSC Certified Lean Six Sigma Black Belt exam. Topic mastery scored from debriefs, session history plotted as an individuals control chart.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23E9ECE6'/%3E%3Cpath d='M3 22 L10 14 L16 19 L22 8 L29 12' fill='none' stroke='%2321262A' stroke-width='2.5'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   TOKENS — every colour, space and size in the page comes from here.
+   Change a value here and it changes everywhere.
+   ========================================================================== */
+:root{
+  /* palette: engineering graph paper, pencil, spec-limit red */
+  --paper:      #E9ECE6;
+  --panel:      #E1E6DF;
+  --graphite:   #21262A;
+  --muted:      #5C6560;
+  --rule:       #B4C4BB;
+  --spec:       #A6301F;
+
+  /* spacing scale — 4px base */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+  --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+
+  /* type */
+  --display: 'Space Grotesk', system-ui, sans-serif;
+  --body: 'IBM Plex Sans', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --t-xs: 12px; --t-sm: 14px; --t-base: 17px;
+  --t-lg: 21px; --t-xl: 27px;
+
+  --maxw: 1080px;
+}
+
+*{ box-sizing: border-box; }
+
+html{ -webkit-text-size-adjust: 100%; }
+
+body{
+  margin: 0;
+  background: var(--paper);
+  /* faint graph-paper grid */
+  background-image:
+    linear-gradient(to right, rgba(180,196,187,.30) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(180,196,187,.30) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--graphite);
+  font-family: var(--body);
+  font-size: var(--t-base);
+  line-height: 1.6;
+}
+
+.wrap{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: var(--s6) var(--s4) var(--s9);
+}
+
+/* ==========================================================================
+   MASTHEAD
+   ========================================================================== */
+.mast{
+  border-bottom: 2px solid var(--graphite);
+  padding-bottom: var(--s4);
+  margin-bottom: var(--s6);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+}
+.mast h1{
+  font-family: var(--display);
+  font-size: var(--t-xl);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.mast .sub{
+  font-family: var(--mono);
+  font-size: var(--t-xs);
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: var(--s1) 0 0;
+}
+.mast .count{
+  font-family: var(--mono);
+  font-size: var(--t-sm);
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   HEADLINE FIGURE
+   ========================================================================== */
+.readout{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--s5);
+  margin-bottom: var(--s7);
+}
+.figure .n{
+  font-family: var(--display);
+  font-size: clamp(40px, 9vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  display: block;
+  font-variant-numeric: tabular-nums;
+}
+.figure .cap{
+  font-family: var(--mono);
+  font-size: var(--t-xs);
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: var(--s2);
+  display: block;
+}
+
+/* ==========================================================================
+   SECTIONS
+   ========================================================================== */
+section{ margin-bottom: var(--s7); }
+
+h2{
+  font-family: var(--mono);
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: var(--s2);
+  margin: 0 0 var(--s4);
+}
+
+p{ max-width: 65ch; }
+.note{ font-size: var(--t-sm); color: var(--muted); }
+
+/* ==========================================================================
+   NEXT UP
+   ========================================================================== */
+.nextup{
+  background: var(--panel);
+  border-left: 3px solid var(--graphite);
+  padding: var(--s4) var(--s5);
+}
+.nextup p{ margin: 0 0 var(--s3); }
+.chips{ display: flex; flex-wrap: wrap; gap: var(--s2); list-style: none; padding: 0; margin: 0; }
+.chip{
+  font-family: var(--mono);
+  font-size: var(--t-sm);
+  border: 1px solid var(--graphite);
+  padding: var(--s1) var(--s2);
+  background: var(--paper);
+}
+.chip.due{ border-color: var(--spec); color: var(--spec); }
+
+/* ==========================================================================
+   CONTROL CHART — the signature element
+   ========================================================================== */
+.chart-frame{ background: var(--panel); padding: var(--s5) var(--s4) var(--s4); }
+.chart-frame svg{ display: block; width: 100%; height: auto; }
+.chart-legend{
+  font-family: var(--mono);
+  font-size: var(--t-xs);
+  color: var(--muted);
+  margin: var(--s3) 0 0;
+  max-width: 70ch;
+}
+.chart-legend strong{ color: var(--graphite); font-weight: 500; }
+
+/* ==========================================================================
+   CURRICULUM
+   ========================================================================== */
+details.phase{
+  border-bottom: 1px solid var(--rule);
+}
+details.phase:first-of-type{ border-top: 1px solid var(--rule); }
+
+summary.phase-head{
+  cursor: pointer;
+  padding: var(--s4) var(--s2);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--s4);
+  list-style: none;
+  min-height: 44px;
+}
+summary.phase-head::-webkit-details-marker{ display: none; }
+summary.phase-head:hover{ background: var(--panel); }
+summary.phase-head:focus-visible{ outline: 2px solid var(--graphite); outline-offset: -2px; }
+
+.phase-name{
+  font-family: var(--display);
+  font-size: var(--t-lg);
+  letter-spacing: -0.01em;
+}
+.phase-weight{
+  font-family: var(--mono);
+  font-size: var(--t-xs);
+  color: var(--muted);
+  display: block;
+  letter-spacing: .08em;
+}
+.phase-tally{
+  font-family: var(--mono);
+  font-size: var(--t-sm);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* thin stacked distribution bar */
+.dist{ display: flex; height: 10px; width: 100%; min-width: 60px; background: var(--rule); }
+.dist span{ display: block; height: 100%; }
+.dist .l3{ background: var(--graphite); }
+.dist .l2{ background: rgba(33,38,42,.55); }
+.dist .l1{ background: rgba(33,38,42,.22); }
+
+.group-name{
+  font-family: var(--mono);
+  font-size: var(--t-xs);
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: var(--s5) 0 var(--s2);
+  padding-left: var(--s2);
+}
+.topics{ list-style: none; margin: 0 0 var(--s4); padding: 0; }
+.topic{
+  display: grid;
+  grid-template-columns: 62px 1fr auto;
+  gap: var(--s3);
+  align-items: center;
+  padding: var(--s2);
+  border-top: 1px solid rgba(180,196,187,.5);
+  font-size: var(--t-sm);
+}
+.topic .tid{ font-family: var(--mono); color: var(--muted); font-size: var(--t-xs); }
+.topic.done .tname{ color: var(--muted); }
+.topic.stale .tid{ color: var(--spec); }
+
+.pips{ display: flex; gap: 3px; align-items: center; }
+.pips i{
+  width: 11px; height: 11px;
+  border: 1px solid var(--graphite);
+  display: block;
+}
+.pips i.on{ background: var(--graphite); }
+.pips .sr{ font-family: var(--mono); font-size: var(--t-xs); color: var(--muted); margin-left: var(--s2); }
+
+/* ==========================================================================
+   SESSION HISTORY
+   ========================================================================== */
+.sessions{ list-style: none; padding: 0; margin: 0; }
+.session{
+  border-top: 1px solid var(--rule);
+  padding: var(--s4) var(--s2);
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: var(--s4);
+}
+.session:last-child{ border-bottom: 1px solid var(--rule); }
+.session .meta{ font-family: var(--mono); font-size: var(--t-xs); color: var(--muted); }
+.session .meta b{ display: block; color: var(--graphite); font-size: var(--t-sm); font-weight: 500; }
+.session h3{
+  font-family: var(--body); font-weight: 600; font-size: var(--t-base);
+  margin: 0 0 var(--s2);
+}
+.session p{ margin: 0 0 var(--s3); font-size: var(--t-sm); }
+.moves{ font-family: var(--mono); font-size: var(--t-xs); color: var(--muted); }
+.moves span{ white-space: nowrap; margin-right: var(--s3); display: inline-block; }
+.moves b{ color: var(--graphite); font-weight: 500; }
+
+/* ==========================================================================
+   EMPTY & ERROR STATES
+   ========================================================================== */
+.state{
+  background: var(--panel);
+  border-left: 3px solid var(--graphite);
+  padding: var(--s5);
+}
+.state.bad{ border-left-color: var(--spec); }
+.state h3{ font-family: var(--display); font-size: var(--t-lg); margin: 0 0 var(--s2); }
+.state p{ margin: 0 0 var(--s3); font-size: var(--t-sm); }
+.state p:last-child{ margin-bottom: 0; }
+.state code{
+  font-family: var(--mono); font-size: var(--t-xs);
+  background: var(--paper); padding: 2px 5px; border: 1px solid var(--rule);
+}
+
+footer{
+  border-top: 2px solid var(--graphite);
+  margin-top: var(--s8);
+  padding-top: var(--s4);
+  font-family: var(--mono);
+  font-size: var(--t-xs);
+  color: var(--muted);
+  letter-spacing: .06em;
+}
+
+/* ==========================================================================
+   NARROW SCREENS
+   ========================================================================== */
+@media (max-width: 560px){
+  .wrap{ padding: var(--s5) var(--s3) var(--s8); }
+  summary.phase-head{ grid-template-columns: 1fr auto; gap: var(--s3) var(--s4); }
+  summary.phase-head > :nth-child(1){ grid-area: 1 / 1 / 2 / 2; }
+  summary.phase-head > :nth-child(2){ grid-area: 2 / 1 / 3 / 3; }
+  summary.phase-head > :nth-child(3){ grid-area: 1 / 2 / 2 / 3; justify-self: end; }
+  .session{ grid-template-columns: 1fr; gap: var(--s2); }
+  .topic{ grid-template-columns: 52px 1fr; }
+  .topic .pips{ grid-column: 2; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+
+<body>
+<main class="wrap">
+
+  <header class="mast">
+    <div>
+      <h1>ICBB Track</h1>
+      <p class="sub">Lean Six Sigma Black Belt — study log</p>
+    </div>
+    <p class="count" id="mast-count"></p>
+  </header>
+
+  <div id="app"></div>
+
+  <footer>
+    Scores are assigned during debrief, not self-reported. 0 untouched · 1 read · 2 explained · 3 applied.
+  </footer>
+
+</main>
+
+<!-- data ------------------------------------------------------------------->
+<script src="data/curriculum.js"></script>
+<script src="data/log.js"></script>
+
+<script>
+/* ==========================================================================
+   RENDER
+   ========================================================================== */
+(function () {
+  var app = document.getElementById('app');
+
+  /* --- guard: data files missing ---------------------------------------- */
+  if (!window.ICBB_CURRICULUM || !window.ICBB_LOG) {
+    app.innerHTML =
+      '<div class="state bad">' +
+      '<h3>The data files did not load</h3>' +
+      '<p>This page needs <code>data/curriculum.js</code> and <code>data/log.js</code> ' +
+      'sitting next to it. Check that the <code>data</code> folder came along.</p>' +
+      '</div>';
+    return;
+  }
+
+  var CUR = window.ICBB_CURRICULUM;
+  var LOG = window.ICBB_LOG;
+  var scores = LOG.scores || {};
+  var sessions = LOG.sessions || [];
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+  function scoreOf(id) {
+    var r = scores[id];
+    return r && typeof r.s === 'number' ? r.s : 0;
+  }
+  function allTopics(phase) {
+    return phase.groups.reduce(function (a, g) { return a.concat(g.topics); }, []);
+  }
+  function daysSince(iso) {
+    if (!iso) return null;
+    var d = (Date.now() - new Date(iso + 'T12:00:00').getTime()) / 86400000;
+    return Math.floor(d);
+  }
+
+  /* --- totals ------------------------------------------------------------ */
+  var total = 0, mastered = 0, touched = 0, weighted = 0;
+
+  CUR.phases.forEach(function (p) {
+    var ts = allTopics(p);
+    var m3 = ts.filter(function (t) { return scoreOf(t.id) === 3; }).length;
+    total += ts.length;
+    mastered += m3;
+    touched += ts.filter(function (t) { return scoreOf(t.id) > 0; }).length;
+    weighted += p.weight * (m3 / ts.length);
+  });
+
+  document.getElementById('mast-count').textContent =
+    sessions.length + (sessions.length === 1 ? ' session logged' : ' sessions logged');
+
+  var html = '';
+
+  /* --- headline readout -------------------------------------------------- */
+  html +=
+    '<div class="readout">' +
+      '<div class="figure"><span class="n">' + Math.round(weighted) + '%</span>' +
+        '<span class="cap">of the exam, weighted</span></div>' +
+      '<div class="figure"><span class="n">' + mastered + '<span style="color:var(--muted)">/' + total + '</span></span>' +
+        '<span class="cap">topics at applied level</span></div>' +
+      '<div class="figure"><span class="n">' + (total - touched) + '</span>' +
+        '<span class="cap">topics not yet opened</span></div>' +
+    '</div>';
+
+  /* --- next up ----------------------------------------------------------- */
+  var plan = LOG.plan || {};
+  var nameById = {};
+  CUR.phases.forEach(function (p) {
+    allTopics(p).forEach(function (t) { nameById[t.id] = t.name; });
+  });
+
+  /* a topic is "due" if it stalled at 1 or 2 and has not been seen in 10+ days */
+  var due = Object.keys(scores).filter(function (id) {
+    var r = scores[id];
+    var d = daysSince(r.last);
+    return r.s > 0 && r.s < 3 && d !== null && d >= 10;
+  });
+
+  html += '<section><h2>Next block</h2><div class="nextup">';
+  html += '<p>' + esc(plan.note || 'No plan set yet.') + '</p>';
+  if (plan.nextUp && plan.nextUp.length) {
+    html += '<ul class="chips">' + plan.nextUp.map(function (id) {
+      return '<li class="chip">' + esc(id) + ' &nbsp;' + esc(nameById[id] || 'unknown topic') + '</li>';
+    }).join('') + '</ul>';
+  }
+  if (due.length) {
+    html += '<p class="note" style="margin:var(--s4) 0 var(--s2)">Stalled below applied level for 10 days or more — revisit:</p>';
+    html += '<ul class="chips">' + due.map(function (id) {
+      return '<li class="chip due">' + esc(id) + ' &nbsp;' + esc(nameById[id] || '') + '</li>';
+    }).join('') + '</ul>';
+  }
+  html += '</div></section>';
+
+  /* --- control chart ----------------------------------------------------- */
+  html += '<section><h2>Individuals chart — topics reaching applied level per block</h2>';
+  html += '<div class="chart-frame">' + buildChart(sessions) + '</div>';
+  html += '<p class="chart-legend">This is an <strong>I-chart</strong> (topic C-05). ' +
+          'Centre line is your mean. Limits are CL &plusmn; 2.66 &times; average moving range — ' +
+          'the standard calculation for individual measurements. ' +
+          'A point outside the limits is a special cause: an unusually strong or unusually poor block. ' +
+          'Ask what was different about it.</p>';
+  html += '</section>';
+
+  /* --- curriculum -------------------------------------------------------- */
+  html += '<section><h2>Body of knowledge</h2>';
+  CUR.phases.forEach(function (p) {
+    var ts = allTopics(p);
+    var c = [0, 0, 0, 0];
+    ts.forEach(function (t) { c[scoreOf(t.id)]++; });
+    var n = ts.length;
+    var pct = function (x) { return (x / n * 100).toFixed(2) + '%'; };
+    var open = (plan.focusPhase === p.id) ? ' open' : '';
+
+    html += '<details class="phase"' + open + '>';
+    html += '<summary class="phase-head">';
+    html += '<span><span class="phase-name">' + esc(p.name) + '</span>' +
+            '<span class="phase-weight">' + p.weight + '% of exam · ' + n + ' topics</span></span>';
+    html += '<span class="dist" role="img" aria-label="' + c[3] + ' applied, ' + c[2] +
+            ' explained, ' + c[1] + ' read, ' + c[0] + ' untouched">' +
+              '<span class="l3" style="width:' + pct(c[3]) + '"></span>' +
+              '<span class="l2" style="width:' + pct(c[2]) + '"></span>' +
+              '<span class="l1" style="width:' + pct(c[1]) + '"></span>' +
+            '</span>';
+    html += '<span class="phase-tally">' + c[3] + '/' + n + '</span>';
+    html += '</summary>';
+
+    p.groups.forEach(function (g) {
+      html += '<p class="group-name">' + esc(g.name) + '</p><ul class="topics">';
+      g.topics.forEach(function (t) {
+        var s = scoreOf(t.id);
+        var rec = scores[t.id];
+        var d = rec ? daysSince(rec.last) : null;
+        var stale = s > 0 && s < 3 && d !== null && d >= 10;
+        html += '<li class="topic' + (s === 3 ? ' done' : '') + (stale ? ' stale' : '') + '">' +
+          '<span class="tid">' + esc(t.id) + '</span>' +
+          '<span class="tname">' + esc(t.name) + '</span>' +
+          '<span class="pips" role="img" aria-label="Score ' + s + ' of 3">' +
+            '<i class="' + (s >= 1 ? 'on' : '') + '"></i>' +
+            '<i class="' + (s >= 2 ? 'on' : '') + '"></i>' +
+            '<i class="' + (s >= 3 ? 'on' : '') + '"></i>' +
+            '<span class="sr">' + (CUR.scale[s] ? CUR.scale[s].label.toLowerCase() : '') + '</span>' +
+          '</span>' +
+        '</li>';
+      });
+      html += '</ul>';
+    });
+    html += '</details>';
+  });
+  html += '</section>';
+
+  /* --- session history --------------------------------------------------- */
+  html += '<section><h2>Blocks</h2>';
+  if (!sessions.length) {
+    html += '<div class="state"><h3>No blocks yet</h3>' +
+      '<p>Study for an hour, then open Claude Code in this folder and say ' +
+      '<code>debrief me</code>. It will ask what you covered, quiz you, score each topic, ' +
+      'and write the block here.</p></div>';
+  } else {
+    html += '<ul class="sessions">';
+    sessions.slice().reverse().forEach(function (s) {
+      html += '<li class="session">' +
+        '<span class="meta"><b>Block ' + esc(s.n) + '</b>' + esc(s.date) +
+        (s.minutes ? '<br>' + esc(s.minutes) + ' min' : '') + '</span>' +
+        '<div>' +
+          '<h3>' + esc(s.title || 'Untitled block') + '</h3>' +
+          (s.notes ? '<p>' + esc(s.notes) + '</p>' : '') +
+          (s.topics && s.topics.length
+            ? '<p class="moves">' + s.topics.map(function (t) {
+                return '<span><b>' + esc(t.id) + '</b> ' + t.from + '&rarr;' + t.to + '</span>';
+              }).join('') + '</p>'
+            : '') +
+        '</div></li>';
+    });
+    html += '</ul>';
+  }
+  html += '</section>';
+
+  app.innerHTML = html;
+
+  /* ========================================================================
+     I-CHART BUILDER
+     ====================================================================== */
+  function buildChart(list) {
+    if (list.length < 2) {
+      return '<div class="state" style="background:var(--paper)">' +
+        '<h3>' + (list.length === 0 ? 'Baseline not started' : 'One point is not a process') + '</h3>' +
+        '<p>Control limits need a moving range, which needs at least two blocks. ' +
+        'Log ' + (2 - list.length) + ' more and the chart draws itself.</p></div>';
+    }
+
+    var vals = list.map(function (s) {
+      return (s.topics || []).filter(function (t) { return t.to === 3 && t.from < 3; }).length;
+    });
+
+    var n = vals.length;
+    var cl = vals.reduce(function (a, b) { return a + b; }, 0) / n;
+    var mr = [];
+    for (var i = 1; i < n; i++) mr.push(Math.abs(vals[i] - vals[i - 1]));
+    var mrbar = mr.reduce(function (a, b) { return a + b; }, 0) / mr.length;
+    var ucl = cl + 2.66 * mrbar;
+    var lcl = Math.max(0, cl - 2.66 * mrbar);
+
+    var W = 900, H = 340, PAD_L = 54, PAD_R = 22, PAD_T = 24, PAD_B = 46;
+    var top = Math.max(ucl, Math.max.apply(null, vals)) * 1.15 + 1;
+    var x = function (i) { return PAD_L + (n === 1 ? 0 : i * (W - PAD_L - PAD_R) / (n - 1)); };
+    var y = function (v) { return PAD_T + (H - PAD_T - PAD_B) * (1 - v / top); };
+
+    var g = '';
+    g += '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Control chart of topics mastered per study block. Centre line ' +
+         cl.toFixed(1) + ', upper limit ' + ucl.toFixed(1) + '.">';
+
+    // axes
+    g += '<line x1="' + PAD_L + '" y1="' + PAD_T + '" x2="' + PAD_L + '" y2="' + (H - PAD_B) +
+         '" stroke="var(--graphite)" stroke-width="1.5"/>';
+    g += '<line x1="' + PAD_L + '" y1="' + (H - PAD_B) + '" x2="' + (W - PAD_R) + '" y2="' + (H - PAD_B) +
+         '" stroke="var(--graphite)" stroke-width="1.5"/>';
+
+    // limits
+    function limit(v, label, colour, dash) {
+      g += '<line x1="' + PAD_L + '" y1="' + y(v) + '" x2="' + (W - PAD_R) + '" y2="' + y(v) +
+           '" stroke="' + colour + '" stroke-width="1.25"' + (dash ? ' stroke-dasharray="7 5"' : '') + '/>';
+      g += '<text x="' + (PAD_L - 8) + '" y="' + (y(v) + 4) + '" text-anchor="end" ' +
+           'font-family="IBM Plex Mono, monospace" font-size="12" fill="' + colour + '">' + label + '</text>';
+    }
+    limit(ucl, 'UCL', 'var(--spec)', true);
+    limit(cl, 'CL', 'var(--graphite)', false);
+    if (lcl > 0) limit(lcl, 'LCL', 'var(--spec)', true);
+
+    // connecting line
+    var path = vals.map(function (v, i) { return (i ? 'L' : 'M') + x(i) + ' ' + y(v); }).join(' ');
+    g += '<path d="' + path + '" fill="none" stroke="var(--graphite)" stroke-width="1.5"/>';
+
+    // points
+    vals.forEach(function (v, i) {
+      var out = v > ucl || v < lcl;
+      g += '<circle cx="' + x(i) + '" cy="' + y(v) + '" r="' + (out ? 6.5 : 4.5) + '" ' +
+           'fill="' + (out ? 'var(--spec)' : 'var(--graphite)') + '"/>';
+      if (out) {
+        g += '<circle cx="' + x(i) + '" cy="' + y(v) + '" r="11" fill="none" stroke="var(--spec)" stroke-width="1.25"/>';
+      }
+      g += '<text x="' + x(i) + '" y="' + (H - PAD_B + 20) + '" text-anchor="middle" ' +
+           'font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--muted)">' + list[i].n + '</text>';
+    });
+
+    g += '<text x="' + (PAD_L + (W - PAD_L - PAD_R) / 2) + '" y="' + (H - 8) + '" text-anchor="middle" ' +
+         'font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--muted)" ' +
+         'letter-spacing="1.5">BLOCK</text>';
+    g += '</svg>';
+    return g;
+  }
+})();
+</script>
+</body>
+</html>
