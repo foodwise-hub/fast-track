@@ -22,8 +22,8 @@ window.ICBB_LOG = {
 
   /* What to do in the next one-hour block. */
   plan: {
-    nextUp: ["MOD-04", "MOD-05"],
-    note: "SIPOC and the value stream. Both are project deliverables — build them against a real Social Current process, not the course example."
+    nextUp: ["MOD-03", "MOD-04"],
+    note: "Revisiting the Project Charter, then SIPOC. Both are project deliverables — build them against a real Social Current process, not the course's PBJ Inc. example."
   },
 
   /* One entry per one-hour block. */

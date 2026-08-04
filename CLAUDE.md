@@ -19,19 +19,47 @@ Three gates, strictly sequential:
 
 Note the shape: coursework is the small half, the project is the large half.
 
-### The deadline is unresolved — do not assert a date
+### The deadline
 
-SSDSI's own materials contradict each other. The product page sells "180 days of
-project mentorship", implying the clock starts at the project. The milestone text
-says only that the project must finish "within 180-day certification deadline",
-naming no start point.
+Module #0 of the course states the project must be completed **within 180 calendar
+days from the day you purchased the course**. `deadline.mode` is set to
+`"enrolment"` on that basis.
 
-`deadline.mode` in `data/curriculum.js` is currently `"unknown"` and the dashboard
-shows both scenarios rather than picking one. When Andreas gets an answer, set
-`mode` to `"enrolment"` or `"project"`, fill in the real start date, set
-`confirmed: true`, and the hedging disappears.
+Two things are still unconfirmed, so `confirmed` stays `false`:
 
-Until then, do not tell him how many days he has left. Tell him both numbers.
+- That wording comes from the standalone Green Belt transcripts, not the Black Belt
+  Fast Track terms.
+- `enrolmentStart` is a guess — the date the course files appeared in his Drive.
+
+**Two 90-day extensions are available for a fee**, up to 180 extra days. If he falls
+behind, raise this rather than letting him panic.
+
+When he gets real answers, update `deadline` in `data/curriculum.js` and set
+`confirmed: true`.
+
+### The project has hard gates
+
+Not just "do a project." From the transcripts:
+
+- **Analyze** requires at least one statistically significant input, and inputs
+  explaining **50% or more of the variation in Y**.
+- **Improve** requires solutions derived from the statistics rather than the FMEA,
+  and proof of a statistically significant change.
+- A **Swim Lane process map** is a required deliverable.
+- Submission is **phase-gated**: each DMAIC Tollgate plus deliverables goes to Kevin
+  Clay at SSDSI, and he waits for approval before the next phase. Five review cycles
+  outside his control, then a PowerPoint from the required template and possibly a
+  live presentation.
+
+That 50% figure should drive project selection. If his data cannot plausibly clear
+it, he stalls at a tollgate. Say so early.
+
+### Minitab
+
+14-day trial, Windows only — Mac and web versions lack the Assistant the course
+depends on. First needed at **MOD-10**. Do not let him start the trial before then.
+SSDSI endorses Excel's free Data Analysis Tools add-in as the alternative, which
+matters because he does not have Microsoft Office and works in Google Sheets.
 
 ## Files
 
@@ -114,33 +142,34 @@ Then one honest sentence about the block. An observation, not encouragement.
 ## Worksheets
 
 Twelve units are marked `project: true` in `curriculum.js` — those produce
-deliverables the Black Belt project will need. When he reaches one:
+deliverables the Black Belt project will need.
 
-- Produce the worksheet **content** in the conversation. The SSDSI templates are
-  `.xlsm`, which you cannot edit; he pastes into Excel.
-- Save a copy to `data/worksheets/<unit-id>-<slug>.md`.
-- **Build it against a real process at his employer, never the course example.**
-  He works in accreditation at Social Current and has historical data in Salesforce
-  and Power BI. Every worksheet done on real data is project work he does not repeat
-  in September, when he will have roughly five weeks and no slack.
+Worksheets are drafted **in chat**, not here, and stored in his Google Drive folder.
+He does not have Microsoft Office, so the `.xlsm` templates open in Google Sheets
+with macros stripped. At debrief, just record in the session which worksheet he
+completed and for which process. Do not ask him to save worksheet files into this
+repo.
 
-For units with no template, write your own exercise and save it the same way:
-question, his answer, your correction.
+**Always build them against a real process at his employer, never the course's PBJ
+Inc. example.** He works in accreditation at Social Current with history in
+Salesforce and Power BI. Every worksheet done on real data is project work he does
+not repeat later, when he will have little slack.
 
 ## Things to raise if he has not
 
-Four questions for SSDSI, best sent as one email:
+Questions for SSDSI, best sent as one email:
 
-1. When does the 180-day clock start — enrolment, or passing the exam?
+1. Does the 180-day clock run from purchase for the Black Belt Fast Track, as
+   Module #0 says for the Green Belt?
 2. What is the exact expiry date?
-3. Is the exam 60 or 100 minutes?
-4. Are paid extensions available, and what do they cost?
+3. Is the internal exam 60 or 100 minutes? The portal and the website disagree.
+4. What do the two 90-day extensions cost?
 
 Also: **identify the project process early.** He cannot formally start the project
 before passing the exam, but nothing stops him choosing the process and pulling
-historical baseline data now. He works in accreditation at Social Current with
-history in Salesforce and Power BI. Baseline collection is what kills compressed
-project timelines; his already exists.
+historical baseline data now. Baseline collection is what kills compressed project
+timelines; his already exists. And the 50%-of-variation requirement means the choice
+of process is close to irreversible — better decided in August than October.
 
 ## Tone
 

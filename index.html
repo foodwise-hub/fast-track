@@ -141,6 +141,13 @@ summary.block-head:focus-visible{ outline:2px solid var(--graphite); outline-off
   text-transform:uppercase; color:var(--muted); border:1px solid var(--rule);
   padding:0 4px; margin-left:var(--s2); white-space:nowrap; }
 .unit .tag.proj{ border-color:var(--graphite); color:var(--graphite); }
+.unit-flag{
+  grid-column: 2 / -1;
+  font-size: var(--t-xs);
+  color: var(--spec);
+  font-style: italic;
+  margin-top: 2px;
+}
 .pips{ display:flex; gap:3px; align-items:center; }
 .pips i{ width:11px; height:11px; border:1px solid var(--graphite); display:block; }
 .pips i.on{ background:var(--graphite); }
@@ -298,10 +305,16 @@ footer{ border-top:2px solid var(--graphite); margin-top:var(--s8); padding-top:
 
   if (hedge) {
     html += '<div class="state-box bad" style="margin-bottom:var(--s7)">' +
-      '<h3>The 180 days start somewhere</h3><p>' + hedge + '</p>' +
-      '<p class="note" style="margin-bottom:0">Also worth asking in the same email: the exact expiry date, ' +
-      'whether the exam is 60 or 100 minutes (the portal and the website disagree), ' +
-      'and whether a paid extension exists.</p></div>';
+      '<h3>The 180 days start somewhere</h3><p>' + hedge + '</p></div>';
+  } else if (!dl.confirmed) {
+    html += '<div class="state-box" style="margin-bottom:var(--s6)">' +
+      '<h3>This date is inferred, not confirmed</h3>' +
+      '<p>' + esc(dl.caveat || '') + '</p>' +
+      (dl.extensions ? '<p><strong>' + dl.extensions.available + ' &times; ' +
+        dl.extensions.daysEach + '-day extensions</strong> are available for a fee \u2014 up to ' +
+        (dl.extensions.available * dl.extensions.daysEach) + ' extra days. ' +
+        esc(dl.extensions.note.split('. ').slice(1).join('. ')) + '</p>' : '') +
+      '</div>';
   }
 
   if (CUR.effort) {
@@ -332,9 +345,16 @@ footer{ border-top:2px solid var(--graphite); margin-top:var(--s8); padding-top:
       '<span class="state">' + label + (ms[g.key] && ms[g.key].note ? ' — ' + esc(ms[g.key].note) : '') + '</span>' +
       '</div>';
   });
-  html += '</div></section>';
-
-  /* --- next block -------------------------------------------------------- */
+  html += '</div>';
+  if (CUR.project && CUR.project.hardRequirements) {
+    html += '<p class="note" style="margin-top:var(--s4)"><strong>Gate 3 will not pass without these:</strong></p>' +
+      '<ul class="gaplist">' + CUR.project.hardRequirements.map(function(r){
+        return '<li>' + esc(r) + '</li>'; }).join('') + '</ul>';
+    if (CUR.project.submission) {
+      html += '<p class="note">' + esc(CUR.project.submission) + '</p>';
+    }
+  }
+  html += '</section>';
   var plan = LOG.plan || {};
   var due = Object.keys(scores).filter(function(id){
     var r = scores[id], d = daysSince(r.last);
@@ -400,7 +420,9 @@ footer{ border-top:2px solid var(--graphite); margin-top:var(--s8); padding-top:
           '<i class="' + (s>=2?'on':'') + '"></i>' +
           '<i class="' + (s>=3?'on':'') + '"></i>' +
           '<span class="sr">' + (CUR.scale[s] ? CUR.scale[s].label.toLowerCase() : '') + '</span>' +
-        '</span></li>';
+        '</span>' +
+        (u.flag ? '<span class="unit-flag">' + esc(u.flag) + '</span>' : '') +
+        '</li>';
     });
     html += '</ul></details>';
   });

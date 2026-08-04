@@ -37,31 +37,58 @@ window.ICBB_CURRICULUM = {
     workbook: "DMAIC Phase Deliverables (MS Excel)",
     estimatedHours: 40,
     solo: true,
-    note: "Solo \u2014 candidates cannot work as a group and only one is certified per project. Around 40 hours of work."
+    note: "Solo \u2014 candidates cannot work as a group and only one is certified per project. Around 40 hours of work.",
+    submission: "Phase-gated. Complete each DMAIC Tollgate file plus that phase's deliverables, email to Kevin Clay at SSDSI, wait for approval, then proceed. Five review cycles you do not control. Then a PowerPoint from the required template, and possibly a live virtual presentation.",
+    hardRequirements: [
+      "Analyze: identify at least one statistically significant input affecting Y",
+      "Analyze: inputs must explain at least 50% of the variation in Y",
+      "Improve: solutions must derive from the statistics, not from the FMEA alone",
+      "Improve: must prove a statistically significant change in Y",
+      "A Swim Lane process map is a required deliverable"
+    ]
   },
 
+  /* Software. Do not start the trial until Module #10. */
+  software: {
+    name: "Minitab",
+    trialDays: 14,
+    windowsOnly: true,
+    note: "Windows only \u2014 the Mac and web versions do not support Minitab's Assistant, which nearly every exercise uses. The trial is 14 days, so start it when you reach Module #10, not before. SSDSI endorses Excel's free Data Analysis Tools add-in as the alternative.",
+    firstNeeded: "MOD-10"
+  },
+
+  /* The course runs one fictional case study throughout. */
+  caseStudy: "PBJ Inc. \u2014 reducing the cost of making peanut butter and jelly sandwiches.",
+
   /* ------------------------------------------------------------------------
-     DEADLINE — genuinely unresolved. SSDSI's own materials contradict each
-     other. The product page sells "180 days of project mentorship", which
-     implies the clock starts at the project. The milestone text only says the
-     project must finish "within 180-day certification deadline", naming no
-     start point.
+     DEADLINE — Module #0 of the course transcripts states the project must be
+     completed "within 180 calendar days from the day that you purchased your
+     course." That is the enrolment reading, from SSDSI's own material.
 
-       mode "enrolment" — pessimistic, clock already running
-       mode "project"   — optimistic, clock starts when the exam is passed
-       mode "unknown"   — show both, assert neither   <-- current
+     Caveat: those are the standalone Green Belt transcripts. The Black Belt
+     Fast Track terms may differ, so confirmed is still false and the
+     dashboard still flags it.
 
-     Once SSDSI answers, set mode and confirmed:true and the dashboard stops
-     hedging.
+       mode "enrolment" — clock runs from purchase   <-- current
+       mode "project"   — clock starts when the exam is passed
+       mode "unknown"   — show both, assert neither
+
+     enrolmentStart is still a guess: the date the course files first appeared
+     in Drive. Replace it with the real purchase date when SSDSI confirms.
      ---------------------------------------------------------------------- */
   deadline: {
-    mode: "unknown",
+    mode: "enrolment",
     days: 180,
     confirmed: false,
     enrolmentStart: "2026-04-22",
     enrolmentStartIsGuess: true,
     projectStart: null,
-    caveat: "SSDSI's materials contradict each other on when the 180 days begin."
+    extensions: {
+      available: 2,
+      daysEach: 90,
+      note: "Module #0: two 90-day extensions are available, each for an additional per-student fee. Up to 180 extra days. Confirm the Fast Track offers the same and what it costs."
+    },
+    caveat: "Start date is inferred, and the 180-day rule is quoted from the Green Belt transcripts rather than the Fast Track terms."
   },
 
   modules: [
@@ -77,14 +104,14 @@ window.ICBB_CURRICULUM = {
         { id: "MOD-03", n: 5,  name: "Project charter", kind: "core", phase: "Define", project: true },
         { id: "MOD-04", n: 6,  name: "SIPOC(R)", kind: "core", phase: "Define", project: true },
         { id: "MOD-05", n: 7,  name: "LEAN & value stream", kind: "core", phase: "Define" },
-        { id: "MOD-06", n: 8,  name: "Process mapping", kind: "core", phase: "Measure", project: true },
+        { id: "MOD-06", n: 8,  name: "Process mapping \u2014 input map & swim lane", kind: "core", phase: "Measure", project: true, flag: "Swim lane map is a required project deliverable" },
         { id: "MOD-07", n: 9,  name: "Cause & effect matrix", kind: "core", phase: "Measure", project: true },
         { id: "MOD-08", n: 10, name: "Failure mode and effects analysis", kind: "core", phase: "Measure", project: true },
         { id: "MOD-09", n: 11, name: "Basic statistics", kind: "core", phase: "Measure" },
-        { id: "MOD-10", n: 12, name: "Basic quality tools", kind: "core", phase: "Measure" },
+        { id: "MOD-10", n: 12, name: "Basic quality tools", kind: "core", phase: "Measure", flag: "First module that needs Minitab \u2014 start the 14-day trial here" },
         { id: "MOD-11", n: 13, name: "Measurement system analysis", kind: "core", phase: "Measure" },
         { id: "MOD-12", n: 14, name: "Capability analysis", kind: "core", phase: "Measure", project: true },
-        { id: "MOD-13", n: 15, name: "z-Test, ANOVA and chi-squared", kind: "core", phase: "Analyze", project: true },
+        { id: "MOD-13", n: 15, name: "t-tests, ANOVA and chi-squared", kind: "core", phase: "Analyze", project: true, flag: "Portal mislabels this as z-test. Also covers power & sample size, which overlaps MOD-17" },
         { id: "MOD-14", n: 16, name: "Correlation & regression analysis", kind: "core", phase: "Analyze", project: true },
         { id: "MOD-15", n: 17, name: "Controlling the process", kind: "core", phase: "Control", project: true }
       ]
@@ -95,7 +122,7 @@ window.ICBB_CURRICULUM = {
       subtitle: "Module 2 \u00b7 16 units",
       units: [
         { id: "MOD-16", n: 1,  name: "Green Belt review", kind: "review" },
-        { id: "MOD-17", n: 2,  name: "Power & sample size", kind: "core", phase: "Analyze" },
+        { id: "MOD-17", n: 2,  name: "Power & sample size", kind: "core", phase: "Analyze", flag: "Largely covered already in MOD-13 \u2014 likely a fast one" },
         { id: "MOD-18", n: 3,  name: "Introduction to DOE", kind: "core", phase: "Improve" },
         { id: "MOD-19", n: 4,  name: "DOE statistics and concepts", kind: "core", phase: "Improve" },
         { id: "MOD-20", n: 5,  name: "Full factorial DOE", kind: "core", phase: "Improve" },
