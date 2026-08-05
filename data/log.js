@@ -15,20 +15,21 @@ window.ICBB_LOG = {
     "INTRO":  { s: 3, last: "2026-08-04", seen: ["2026-08-04"] },
     "MOD-00": { s: 3, last: "2026-08-04", seen: ["2026-08-04"] },
     "MOD-01": { s: 3, last: "2026-08-04", seen: ["2026-08-04"] },
-    "MOD-03": { s: 2, last: "2026-08-04", seen: ["2026-08-04"] }
+    "MOD-03": { s: 2, last: "2026-08-04", seen: ["2026-08-04"] },
+    "MOD-04": { s: 2, last: "2026-08-04", seen: ["2026-08-04"] }
   },
 
   /* Milestone status: "todo" | "active" | "done" */
   milestones: {
-    coursework: { status: "active", note: "5 of 33 units touched. MOD-03 scored 2 — shaky on scope vs. SIPOC boundaries and business case. MOD-02 (Project selection) held back, unscored — it's a project-tool unit, not pure admin." },
+    coursework: { status: "active", note: "6 of 33 units touched. MOD-03 and MOD-04 both scored 2 — mechanics solid, application under real project constraints (scope changes, red-input strategy) still shaky. MOD-02 (Project selection) held back, unscored." },
     exam:       { status: "todo",   note: "Locked until the coursework is done. Two attempts only." },
     project:    { status: "todo",   note: "Locked until the exam is passed. Scope it early anyway." }
   },
 
   /* What to do in the next one-hour block. */
   plan: {
-    nextUp: ["MOD-04", "MOD-05"],
-    note: "SIPOC and the value stream. Both are project deliverables — build them against a real Social Current process, not the course's PBJ Inc. example. Revisit MOD-03 scope-vs-SIPOC distinction once SIPOC is fresh in mind."
+    nextUp: ["MOD-05", "MOD-06"],
+    note: "LEAN & value stream, then process mapping (swim lane — required project deliverable). Build against a real Social Current process. Also worth a fast re-check on MOD-04's red-input strategy question — he got there but needed a heavy hint tied to the 50%-variation gate."
   },
 
   /* One entry per one-hour block. */
@@ -53,6 +54,16 @@ window.ICBB_LOG = {
         { id: "INTRO",  from: 0, to: 3 },
         { id: "MOD-00", from: 0, to: 3 },
         { id: "MOD-01", from: 0, to: 3 }
+      ]
+    },
+    {
+      n: 3,
+      date: "2026-08-04",
+      minutes: 15,
+      title: "SIPOC(R)",
+      notes: "Nailed the mechanics — nouns/gerunds rule for outputs, yellow-input escalation logic. Application was shaky: gave the naming rule but skipped the actual output fix until pushed; got the red-input response backwards at first (tried to scope it out rather than address it), then landed on 'parallel team' correctly only after being pointed at the 50%-variation gate risk. Also confirmed a real gap: SIPOC's process boundary is the same physical boundary as the charter's Scope first/last steps — not a separate concept, contra how MOD-03 went.",
+      units: [
+        { id: "MOD-04", from: 0, to: 2 }
       ]
     }
   ]
