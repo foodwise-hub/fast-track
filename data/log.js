@@ -17,20 +17,21 @@ window.ICBB_LOG = {
     "MOD-01": { s: 3, last: "2026-08-04", seen: ["2026-08-04"] },
     "MOD-03": { s: 2, last: "2026-08-04", seen: ["2026-08-04"] },
     "MOD-04": { s: 2, last: "2026-08-04", seen: ["2026-08-04"] },
-    "MOD-05": { s: 2, last: "2026-08-06", seen: ["2026-08-06"] }
+    "MOD-05": { s: 2, last: "2026-08-06", seen: ["2026-08-06"] },
+    "MOD-06": { s: 2, last: "2026-08-06", seen: ["2026-08-06"] }
   },
 
   /* Milestone status: "todo" | "active" | "done" */
   milestones: {
-    coursework: { status: "active", note: "7 of 33 units touched. MOD-03, MOD-04, MOD-05 all scored 2 — same shape each time: definitions solid, application needs prompting. MOD-05 specifically: TAKT time formula inverted. MOD-02 (Project selection) held back, unscored." },
+    coursework: { status: "active", note: "8 of 33 units touched. MOD-03 through MOD-06 all scored 2 — a real streak now. MOD-06 specifically: couldn't articulate why skipping Gemba is risky (documented process vs. actual process) after three tries. MOD-02 (Project selection) held back, unscored." },
     exam:       { status: "todo",   note: "Locked until the coursework is done. Two attempts only." },
     project:    { status: "todo",   note: "Locked until the exam is passed. Scope it early anyway." }
   },
 
   /* What to do in the next one-hour block. */
   plan: {
-    nextUp: ["MOD-06", "MOD-07"],
-    note: "Process mapping (swim lane — required project deliverable, and includes input map) then Cause & Effect matrix. Build against a real Social Current process. Re-drill TAKT time (available time ÷ demand, not production rate per worker) before it comes up again in MOD-27 Flow & TAKT."
+    nextUp: ["MOD-07", "MOD-08"],
+    note: "Cause & Effect matrix, then FMEA — they chain together (C&E's top weighted totals feed the FMEA). Build against a real Social Current process. Re-drill the Gemba risk from MOD-06 (documented process vs. actual process) and TAKT time from MOD-05 before this streak of 2's becomes a habit."
   },
 
   /* One entry per one-hour block. */
@@ -75,6 +76,16 @@ window.ICBB_LOG = {
       notes: "Strong recovery on the three-criteria value-add test after an initial vague pass — correctly identified duplicate data entry fails both the customer-wants-it and transforms-information criteria. Correctly reasoned that a low VA% points to waiting/queue time between steps dominating, not universally sloppy work. Weak spot: inverted TAKT time — described it as a per-worker production rate instead of available time ÷ customer demand, and initially misjudged whether the example process was keeping pace with TAKT when the numbers actually showed it matched.",
       units: [
         { id: "MOD-05", from: 0, to: 2 }
+      ]
+    },
+    {
+      n: 5,
+      date: "2026-08-06",
+      minutes: 15,
+      title: "Process Mapping — Input Map & Swim Lane",
+      notes: "Uneven. Correctly explained why an operator/reviewer can never be marked 'Controlled' (control the process, not the person) after one prompt. Real gap on the Gemba question: circled the same point three times without ever naming the actual risk of skipping it (documented process vs. actual process — mapping from SOPs alone risks missing real, undocumented inputs); had to be told the answer outright. Recovered cleanly on SIPOC-vs-swim-lane distinction, first try, no correction needed.",
+      units: [
+        { id: "MOD-06", from: 0, to: 2 }
       ]
     }
   ]
