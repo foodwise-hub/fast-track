@@ -21,38 +21,48 @@ Note the shape: coursework is the small half, the project is the large half.
 
 ### The deadline
 
-Module #0 of the course states the project must be completed **within 180 calendar
-days from the day you purchased the course**. `deadline.mode` is set to
-`"enrolment"` on that basis.
+Unresolved, and SSDSI's own materials give three different answers:
 
-Two things are still unconfirmed, so `confirmed` stays `false`:
+| Source | Says |
+|---|---|
+| Green Belt Module #0 | 180 days from the day you purchased the course |
+| Black Belt Module #1 | 180 days from the end of the course |
+| SSDSI product page | "180 days of project mentorship" |
 
-- That wording comes from the standalone Green Belt transcripts, not the Black Belt
-  Fast Track terms.
-- `enrolmentStart` is a guess — the date the course files appeared in his Drive.
+Two of the three point at the project phase rather than at purchase, which is the
+better reading for him. But he is enrolled in the **Fast Track**, not either
+standalone course, so none of these settles it. `deadline.mode` is `"unknown"` and
+the dashboard shows both scenarios.
 
-**Two 90-day extensions are available for a fee**, up to 180 extra days. If he falls
-behind, raise this rather than letting him panic.
+**Two 90-day extensions are available for a fee** — confirmed in both courses. Up to
+180 extra days. Raise this if he falls behind rather than letting him panic.
 
-When he gets real answers, update `deadline` in `data/curriculum.js` and set
+When he gets a real answer, update `deadline` in `data/curriculum.js` and set
 `confirmed: true`.
 
 ### The project has hard gates
 
 Not just "do a project." From the transcripts:
 
-- **Analyze** requires at least one statistically significant input, and inputs
-  explaining **50% or more of the variation in Y**.
-- **Improve** requires solutions derived from the statistics rather than the FMEA,
-  and proof of a statistically significant change.
+- **Analyze** requires at least one statistically significant input (p < 0.05) **and**
+  an R-squared of **50% or more**.
+- **Improve** requires solutions derived from those statistics rather than from
+  qualitative tools, and proof of a statistically significant change (p < 0.05).
+- **DoE competency must be demonstrated.** If his process does not suit a designed
+  experiment, the Master Black Belt mentor will help find a way — but it cannot
+  simply be skipped.
 - A **Swim Lane process map** is a required deliverable.
-- Submission is **phase-gated**: each DMAIC Tollgate plus deliverables goes to Kevin
-  Clay at SSDSI, and he waits for approval before the next phase. Five review cycles
-  outside his control, then a PowerPoint from the required template and possibly a
-  live presentation.
+- A **Project Proposal worksheet** goes to Kevin Clay (kclay@sixsigmadsi.com) before
+  the project starts.
+- Submission is **phase-gated**: each DMAIC Tollgate plus deliverables goes to the
+  mentor, and he waits for approval before the next phase. Five review cycles outside
+  his control, then a PowerPoint from the required template and possibly a live
+  presentation.
+- The project is **solo**. Candidates cannot work as a group.
 
-That 50% figure should drive project selection. If his data cannot plausibly clear
-it, he stalls at a tollgate. Say so early.
+The 50% figure and the DoE requirement should drive project selection together. A
+process with clean historical data but no controllable factors to experiment on will
+stall at Improve. Raise this early.
 
 ### Minitab
 
@@ -60,6 +70,27 @@ it, he stalls at a tollgate. Say so early.
 depends on. First needed at **MOD-10**. Do not let him start the trial before then.
 SSDSI endorses Excel's free Data Analysis Tools add-in as the alternative, which
 matters because he does not have Microsoft Office and works in Google Sheets.
+
+### Two courses, two numbering schemes
+
+Andreas also has access to the **standalone Black Belt course**, whose modules are
+the same content as the Fast Track's Black Belt half under different numbers. The
+offset is exactly 15:
+
+    Standalone Module #N  =  Fast Track Module #(N + 15)
+
+So standalone #1 is MOD-16, standalone #15 is MOD-30. Each Black Belt unit in
+`curriculum.js` carries an `alt` field with its standalone number.
+
+If he refers to a Black Belt module by a low number (#3, #7), check whether he means
+the standalone course before assuming. Ask rather than guess — MOD-03 is the Project
+Charter and standalone #3 is Introduction to DOE.
+
+One title differs: standalone #13 is "Replenishment Pull and Kanban", Fast Track #28
+is "Pull and Kanban". Same content.
+
+Watching the standalone course does **not** mark Fast Track units complete. He still
+has to work through the Fast Track portal in order for the exam to unlock.
 
 ## Files
 

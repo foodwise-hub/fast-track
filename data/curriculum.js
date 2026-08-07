@@ -44,7 +44,9 @@ window.ICBB_CURRICULUM = {
       "Analyze: inputs must explain at least 50% of the variation in Y",
       "Improve: solutions must derive from the statistics, not from the FMEA alone",
       "Improve: must prove a statistically significant change in Y",
-      "A Swim Lane process map is a required deliverable"
+      "A Swim Lane process map is a required deliverable",
+      "Demonstrated competency in Design of Experiments (the mentor will help if the project does not suit DoE)",
+      "A Project Proposal worksheet must be submitted to Kevin Clay before the project starts"
     ]
   },
 
@@ -61,23 +63,27 @@ window.ICBB_CURRICULUM = {
   caseStudy: "PBJ Inc. \u2014 reducing the cost of making peanut butter and jelly sandwiches.",
 
   /* ------------------------------------------------------------------------
-     DEADLINE — Module #0 of the course transcripts states the project must be
-     completed "within 180 calendar days from the day that you purchased your
-     course." That is the enrolment reading, from SSDSI's own material.
+     DEADLINE — still unresolved, and SSDSI's own materials now give THREE
+     different answers:
 
-     Caveat: those are the standalone Green Belt transcripts. The Black Belt
-     Fast Track terms may differ, so confirmed is still false and the
-     dashboard still flags it.
+       Green Belt Module #0    "180 calendar days from the day that you
+                                purchased your course"
+       Black Belt Module #1    "180 days from the end of the course"
+       SSDSI product page      "180 days of project mentorship"
 
-       mode "enrolment" — clock runs from purchase   <-- current
-       mode "project"   — clock starts when the exam is passed
-       mode "unknown"   — show both, assert neither
+     Two of the three point at the project phase rather than at purchase,
+     which is the better reading for Andreas. But he is enrolled in the Fast
+     Track, not either standalone course, so none of these is authoritative.
 
-     enrolmentStart is still a guess: the date the course files first appeared
-     in Drive. Replace it with the real purchase date when SSDSI confirms.
+       mode "enrolment" — pessimistic, clock runs from purchase
+       mode "project"   — optimistic, clock starts at end of coursework
+       mode "unknown"   — show both, assert neither   <-- current
+
+     Once SSDSI answers, set mode, fill in the real start date, set
+     confirmed:true, and the dashboard stops hedging.
      ---------------------------------------------------------------------- */
   deadline: {
-    mode: "enrolment",
+    mode: "unknown",
     days: 180,
     confirmed: false,
     enrolmentStart: "2026-04-22",
@@ -86,9 +92,9 @@ window.ICBB_CURRICULUM = {
     extensions: {
       available: 2,
       daysEach: 90,
-      note: "Module #0: two 90-day extensions are available, each for an additional per-student fee. Up to 180 extra days. Confirm the Fast Track offers the same and what it costs."
+      note: "Two 90-day extensions are available for a per-student fee \u2014 confirmed in both the Green Belt and Black Belt course materials. Up to 180 extra days."
     },
-    caveat: "Start date is inferred, and the 180-day rule is quoted from the Green Belt transcripts rather than the Fast Track terms."
+    caveat: "SSDSI's materials give three different answers for when the 180 days start."
   },
 
   modules: [
@@ -121,21 +127,21 @@ window.ICBB_CURRICULUM = {
       name: "Black Belt",
       subtitle: "Module 2 \u00b7 16 units",
       units: [
-        { id: "MOD-16", n: 1,  name: "Green Belt review", kind: "review" },
-        { id: "MOD-17", n: 2,  name: "Power & sample size", kind: "core", phase: "Analyze", flag: "Largely covered already in MOD-13 \u2014 likely a fast one" },
-        { id: "MOD-18", n: 3,  name: "Introduction to DOE", kind: "core", phase: "Improve" },
-        { id: "MOD-19", n: 4,  name: "DOE statistics and concepts", kind: "core", phase: "Improve" },
-        { id: "MOD-20", n: 5,  name: "Full factorial DOE", kind: "core", phase: "Improve" },
-        { id: "MOD-21", n: 6,  name: "Full factorial DOE exercise", kind: "exercise", phase: "Improve" },
-        { id: "MOD-22", n: 7,  name: "Fractional factorial DOE", kind: "core", phase: "Improve" },
-        { id: "MOD-23", n: 8,  name: "Non-parametric data", kind: "core", phase: "Analyze" },
-        { id: "MOD-24", n: 9,  name: "Advanced regression", kind: "core", phase: "Improve" },
-        { id: "MOD-25", n: 10, name: "Waste (muda) elimination", kind: "core", phase: "Improve" },
-        { id: "MOD-26", n: 11, name: "Value stream mapping", kind: "core", phase: "Improve", project: true },
-        { id: "MOD-27", n: 12, name: "Flow and TAKT time", kind: "core", phase: "Improve" },
-        { id: "MOD-28", n: 13, name: "Pull and Kanban", kind: "core", phase: "Control" },
-        { id: "MOD-29", n: 14, name: "5S (visual management)", kind: "core", phase: "Control" },
-        { id: "MOD-30", n: 15, name: "Implementation & control plan", kind: "core", phase: "Control", project: true },
+        { id: "MOD-16", n: 1,  name: "Green Belt review", kind: "review", alt: "Standalone BB Module #1" },
+        { id: "MOD-17", n: 2,  name: "Power & sample size", kind: "core", phase: "Analyze", flag: "Largely covered already in MOD-13 \u2014 likely a fast one", alt: "Standalone BB Module #2" },
+        { id: "MOD-18", n: 3,  name: "Introduction to DOE", kind: "core", phase: "Improve", alt: "Standalone BB Module #3" },
+        { id: "MOD-19", n: 4,  name: "DOE statistics and concepts", kind: "core", phase: "Improve", alt: "Standalone BB Module #4" },
+        { id: "MOD-20", n: 5,  name: "Full factorial DOE", kind: "core", phase: "Improve", alt: "Standalone BB Module #5" },
+        { id: "MOD-21", n: 6,  name: "Full factorial DOE exercise", kind: "exercise", phase: "Improve", alt: "Standalone BB Module #6" },
+        { id: "MOD-22", n: 7,  name: "Fractional factorial DOE", kind: "core", phase: "Improve", alt: "Standalone BB Module #7" },
+        { id: "MOD-23", n: 8,  name: "Non-parametric data", kind: "core", phase: "Analyze", alt: "Standalone BB Module #8" },
+        { id: "MOD-24", n: 9,  name: "Advanced regression", kind: "core", phase: "Improve", alt: "Standalone BB Module #9" },
+        { id: "MOD-25", n: 10, name: "Waste (muda) elimination", kind: "core", phase: "Improve", alt: "Standalone BB Module #10" },
+        { id: "MOD-26", n: 11, name: "Value stream mapping", kind: "core", phase: "Improve", project: true, alt: "Standalone BB Module #11" },
+        { id: "MOD-27", n: 12, name: "Flow and TAKT time", kind: "core", phase: "Improve", alt: "Standalone BB Module #12" },
+        { id: "MOD-28", n: 13, name: "Pull and Kanban", kind: "core", phase: "Control", alt: "Standalone BB Module #13" },
+        { id: "MOD-29", n: 14, name: "5S (visual management)", kind: "core", phase: "Control", alt: "Standalone BB Module #14" },
+        { id: "MOD-30", n: 15, name: "Implementation & control plan", kind: "core", phase: "Control", project: true, alt: "Standalone BB Module #15" },
         { id: "EXAM-PREP", n: 16, name: "Fast-Track to Black Belt examination", kind: "exam" }
       ]
     }

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glossary — Fast Track</title>
+<meta name="description" content="Lean Six Sigma terms and acronyms used across the SSDSI Black Belt Fast Track, grouped by DMAIC phase with expandable explanations.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23E9ECE6'/%3E%3Cpath d='M3 22 L10 14 L16 19 L22 8 L29 12' fill='none' stroke='%2321262A' stroke-width='2.5'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:    #E9ECE6;
+  --panel:    #E1E6DF;
+  --graphite: #21262A;
+  --muted:    #5C6560;
+  --rule:     #B4C4BB;
+  --spec:     #A6301F;
+
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px;
+  --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px;
+
+  --display:'Space Grotesk', system-ui, sans-serif;
+  --body:'IBM Plex Sans', system-ui, sans-serif;
+  --mono:'IBM Plex Mono', ui-monospace, monospace;
+
+  --t-xs:12px; --t-sm:14px; --t-base:17px; --t-lg:21px; --t-xl:27px;
+  --maxw:1080px;
+}
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--paper);
+  background-image:
+    linear-gradient(to right, rgba(180,196,187,.30) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(180,196,187,.30) 1px, transparent 1px);
+  background-size:24px 24px;
+  color:var(--graphite);
+  font-family:var(--body);
+  font-size:var(--t-base);
+  line-height:1.6;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:var(--s6) var(--s4) var(--s9); }
+
+/* --- masthead ----------------------------------------------------------- */
+.mast{
+  border-bottom:2px solid var(--graphite);
+  padding-bottom:var(--s4); margin-bottom:var(--s5);
+  display:flex; flex-wrap:wrap; align-items:baseline;
+  justify-content:space-between; gap:var(--s3);
+}
+.mast h1{ font-family:var(--display); font-size:var(--t-xl); line-height:1.1; letter-spacing:-.02em; margin:0; }
+.mast .sub{ font-family:var(--mono); font-size:var(--t-xs); letter-spacing:.10em;
+  text-transform:uppercase; color:var(--muted); margin:var(--s1) 0 0; }
+.mast a{ font-family:var(--mono); font-size:var(--t-sm); color:var(--muted);
+  text-decoration:none; border-bottom:1px solid var(--rule); padding-bottom:2px; }
+.mast a:hover{ color:var(--graphite); border-color:var(--graphite); }
+.mast a:focus-visible{ outline:2px solid var(--graphite); outline-offset:3px; }
+
+/* --- controls ----------------------------------------------------------- */
+.controls{ margin-bottom:var(--s6); }
+.field{ position:relative; max-width:420px; }
+label.sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+#filter{
+  width:100%;
+  font-family:var(--mono); font-size:var(--t-sm);
+  padding:var(--s3) var(--s4);
+  background:var(--paper);
+  border:1px solid var(--graphite);
+  color:var(--graphite);
+  border-radius:0;
+  -webkit-appearance:none;
+}
+#filter::placeholder{ color:var(--muted); }
+#filter:focus{ outline:2px solid var(--graphite); outline-offset:-2px; }
+
+.jump{ display:flex; flex-wrap:wrap; gap:var(--s2); list-style:none; padding:0;
+  margin:var(--s4) 0 0; }
+.jump a{
+  font-family:var(--mono); font-size:var(--t-xs); letter-spacing:.06em;
+  text-transform:uppercase; text-decoration:none;
+  border:1px solid var(--rule); color:var(--muted);
+  padding:var(--s1) var(--s2); display:block;
+}
+.jump a:hover{ border-color:var(--graphite); color:var(--graphite); }
+.jump a:focus-visible{ outline:2px solid var(--graphite); outline-offset:2px; }
+
+.count{ font-family:var(--mono); font-size:var(--t-xs); color:var(--muted);
+  margin:var(--s4) 0 0; letter-spacing:.06em; }
+
+/* --- sections ----------------------------------------------------------- */
+.phase{ margin-bottom:var(--s7); scroll-margin-top:var(--s4); }
+.phase h2{
+  font-family:var(--mono); font-size:var(--t-xs); font-weight:500; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--muted);
+  border-bottom:1px solid var(--rule);
+  padding-bottom:var(--s2); margin:0 0 var(--s2);
+  display:flex; justify-content:space-between; gap:var(--s3);
+}
+.phase h2 span{ color:var(--graphite); }
+
+/* --- entries ------------------------------------------------------------ */
+details.term{ border-bottom:1px solid rgba(180,196,187,.6); }
+summary.term-head{
+  cursor:pointer; list-style:none;
+  padding:var(--s3) var(--s2);
+  min-height:44px;
+  display:flex; align-items:baseline; flex-wrap:wrap; gap:var(--s3);
+}
+summary.term-head::-webkit-details-marker{ display:none; }
+summary.term-head:hover{ background:var(--panel); }
+summary.term-head:focus-visible{ outline:2px solid var(--graphite); outline-offset:-2px; }
+
+.name{ font-family:var(--display); font-size:var(--t-base); letter-spacing:-.01em; }
+.expand{ font-size:var(--t-sm); color:var(--muted); }
+.marker{
+  margin-left:auto; font-family:var(--mono); font-size:var(--t-xs);
+  color:var(--muted); flex-shrink:0;
+}
+details[open] > summary.term-head{ background:var(--panel); }
+details[open] .marker::after{ content:"\2212"; }
+.marker::after{ content:"+"; }
+
+.body{
+  padding:0 var(--s2) var(--s4) var(--s2);
+  background:var(--panel);
+}
+.body p{ margin:0; font-size:var(--t-sm); max-width:70ch; }
+
+.empty{
+  background:var(--panel); border-left:3px solid var(--spec);
+  padding:var(--s5); margin-top:var(--s4);
+}
+.empty h3{ font-family:var(--display); font-size:var(--t-lg); margin:0 0 var(--s2); }
+.empty p{ margin:0; font-size:var(--t-sm); color:var(--muted); }
+
+footer{
+  border-top:2px solid var(--graphite); margin-top:var(--s8); padding-top:var(--s4);
+  font-family:var(--mono); font-size:var(--t-xs); color:var(--muted); letter-spacing:.06em;
+}
+
+@media (max-width:560px){
+  .wrap{ padding:var(--s5) var(--s3) var(--s8); }
+  .name{ font-size:var(--t-sm); }
+}
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  *{ animation:none!important; transition:none!important; }
+}
+</style>
+</head>
+
+<body>
+<main class="wrap">
+
+  <header class="mast">
+    <div>
+      <h1>Glossary</h1>
+      <p class="sub" id="subcount">Lean Six Sigma Black Belt</p>
+    </div>
+    <a href="index.html">&larr; Study log</a>
+  </header>
+
+  <div class="controls">
+    <div class="field">
+      <label class="sr" for="filter">Filter terms</label>
+      <input type="search" id="filter" placeholder="Filter — try 'chart', 'DOE', 'variation'" autocomplete="off">
+    </div>
+    <ul class="jump" id="jump"></ul>
+    <p class="count" id="count"></p>
+  </div>
+
+  <div id="list"></div>
+
+  <footer>
+    Click any term to expand. Acronyms are spelled out beside the term.
+  </footer>
+
+</main>
+
+<script src="data/glossary.js"></script>
+
+<script>
+(function(){
+  var list = document.getElementById('list');
+
+  if (!window.ICBB_GLOSSARY) {
+    list.innerHTML = '<div class="empty"><h3>The glossary data did not load</h3>' +
+      '<p>This page needs <code>data/glossary.js</code> sitting alongside it.</p></div>';
+    return;
+  }
+
+  var G = window.ICBB_GLOSSARY;
+  var PHASES = ["Foundations","Define","Measure","Analyze","Improve","Control"];
+
+  document.getElementById('subcount').textContent =
+    G.length + ' terms \u00b7 Lean Six Sigma Black Belt';
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-'); }
+
+  /* --- jump links -------------------------------------------------------- */
+  document.getElementById('jump').innerHTML = PHASES.map(function(p){
+    return '<li><a href="#' + slug(p) + '">' + esc(p) + '</a></li>';
+  }).join('');
+
+  /* --- build ------------------------------------------------------------- */
+  var html = '';
+  PHASES.forEach(function(p){
+    var terms = G.filter(function(g){ return g.p === p; });
+    if (!terms.length) return;
+    html += '<section class="phase" id="' + slug(p) + '" data-phase="' + esc(p) + '">';
+    html += '<h2>' + esc(p) + '<span class="tally">' + terms.length + '</span></h2>';
+    terms.forEach(function(g){
+      var hay = (g.t + ' ' + (g.x || '') + ' ' + g.d).toLowerCase();
+      html += '<details class="term" data-hay="' + esc(hay) + '">' +
+        '<summary class="term-head">' +
+          '<span class="name">' + esc(g.t) + '</span>' +
+          (g.x ? '<span class="expand">' + esc(g.x) + '</span>' : '') +
+          '<span class="marker" aria-hidden="true"></span>' +
+        '</summary>' +
+        '<div class="body"><p>' + esc(g.d) + '</p></div>' +
+      '</details>';
+    });
+    html += '</section>';
+  });
+  html += '<div class="empty" id="noresults" hidden><h3>Nothing matches that</h3>' +
+    '<p>Try a shorter word, or clear the filter to see them all.</p></div>';
+
+  list.innerHTML = html;
+
+  var countEl = document.getElementById('count');
+  var terms = Array.prototype.slice.call(list.querySelectorAll('details.term'));
+  var sections = Array.prototype.slice.call(list.querySelectorAll('section.phase'));
+  var noresults = document.getElementById('noresults');
+
+  function setCount(n){
+    countEl.textContent = (n === G.length)
+      ? G.length + ' terms'
+      : n + ' of ' + G.length + ' terms';
+  }
+  setCount(G.length);
+
+  /* --- filter ------------------------------------------------------------ */
+  var input = document.getElementById('filter');
+  input.addEventListener('input', function(){
+    var q = input.value.trim().toLowerCase();
+    var shown = 0;
+
+    terms.forEach(function(el){
+      var hit = !q || el.getAttribute('data-hay').indexOf(q) > -1;
+      el.hidden = !hit;
+      if (hit) shown++;
+      /* open matches while filtering so the definition is visible */
+      if (q && hit) { el.open = true; } else if (!q) { el.open = false; }
+    });
+
+    sections.forEach(function(sec){
+      var visible = sec.querySelectorAll('details.term:not([hidden])').length;
+      sec.hidden = visible === 0;
+      var tally = sec.querySelector('.tally');
+      if (tally) {
+        tally.textContent = q
+          ? visible + ' of ' + sec.querySelectorAll('details.term').length
+          : sec.querySelectorAll('details.term').length;
+      }
+    });
+
+    noresults.hidden = shown > 0;
+    setCount(shown);
+  });
+})();
+</script>
+</body>
+</html>
