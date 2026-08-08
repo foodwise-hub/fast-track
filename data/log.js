@@ -18,20 +18,21 @@ window.ICBB_LOG = {
     "MOD-03": { s: 2, last: "2026-08-04", seen: ["2026-08-04"] },
     "MOD-04": { s: 2, last: "2026-08-04", seen: ["2026-08-04"] },
     "MOD-05": { s: 2, last: "2026-08-06", seen: ["2026-08-06"] },
-    "MOD-06": { s: 2, last: "2026-08-06", seen: ["2026-08-06"] }
+    "MOD-06": { s: 2, last: "2026-08-06", seen: ["2026-08-06"] },
+    "MOD-07": { s: 3, last: "2026-08-07", seen: ["2026-08-07"] }
   },
 
   /* Milestone status: "todo" | "active" | "done" */
   milestones: {
-    coursework: { status: "active", note: "8 of 33 units touched. MOD-03 through MOD-06 all scored 2 — a real streak now. MOD-06 specifically: couldn't articulate why skipping Gemba is risky (documented process vs. actual process) after three tries. MOD-02 (Project selection) held back, unscored." },
+    coursework: { status: "active", note: "9 of 33 units touched. MOD-07 broke the four-block streak of 2's — clean arithmetic and correct interpretation on the C&E Matrix, only one prompt needed. MOD-03 through MOD-06 still sit at 2 and are due a re-check (charter scope, red-input strategy, TAKT time, Gemba risk). MOD-02 (Project selection) held back, unscored." },
     exam:       { status: "todo",   note: "Locked until the coursework is done. Two attempts only." },
     project:    { status: "todo",   note: "Locked until the exam is passed. Scope it early anyway." }
   },
 
   /* What to do in the next one-hour block. */
   plan: {
-    nextUp: ["MOD-07", "MOD-08"],
-    note: "Cause & Effect matrix, then FMEA — they chain together (C&E's top weighted totals feed the FMEA). Build against a real Social Current process. Re-drill the Gemba risk from MOD-06 (documented process vs. actual process) and TAKT time from MOD-05 before this streak of 2's becomes a habit."
+    nextUp: ["MOD-08", "MOD-09"],
+    note: "FMEA (chains directly off MOD-07's top weighted totals), then Basic statistics — the start of the stats run that leads to Minitab at MOD-10. Build FMEA against the same real Social Current process used for the C&E Matrix so the two connect."
   },
 
   /* One entry per one-hour block. */
@@ -86,6 +87,16 @@ window.ICBB_LOG = {
       notes: "Uneven. Correctly explained why an operator/reviewer can never be marked 'Controlled' (control the process, not the person) after one prompt. Real gap on the Gemba question: circled the same point three times without ever naming the actual risk of skipping it (documented process vs. actual process — mapping from SOPs alone risks missing real, undocumented inputs); had to be told the answer outright. Recovered cleanly on SIPOC-vs-swim-lane distinction, first try, no correction needed.",
       units: [
         { id: "MOD-06", from: 0, to: 2 }
+      ]
+    },
+    {
+      n: 6,
+      date: "2026-08-07",
+      minutes: 15,
+      title: "Cause & Effect Matrix",
+      notes: "First block to break the streak. One prompt needed to get the full answer on what C&E adds beyond the Input Map (priority ranking + correlation scoring + weighted-total math), but from there it was clean: correctly computed a real weighted-total sum (9×1 + 7×9 + 4×3 = 84) without hesitation, correctly interpreted what the number means, and reasoned soundly through an unstated extension question (why not build the FMEA around every input) while honestly flagging it wasn't explicitly covered rather than bluffing.",
+      units: [
+        { id: "MOD-07", from: 0, to: 3 }
       ]
     }
   ]
