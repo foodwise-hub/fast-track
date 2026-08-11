@@ -20,20 +20,21 @@ window.ICBB_LOG = {
     "MOD-05": { s: 2, last: "2026-08-06", seen: ["2026-08-06"] },
     "MOD-06": { s: 2, last: "2026-08-06", seen: ["2026-08-06"] },
     "MOD-07": { s: 3, last: "2026-08-07", seen: ["2026-08-07"] },
-    "MOD-08": { s: 3, last: "2026-08-10", seen: ["2026-08-10"] }
+    "MOD-08": { s: 3, last: "2026-08-10", seen: ["2026-08-10"] },
+    "MOD-09": { s: 2, last: "2026-08-11", seen: ["2026-08-11"] }
   },
 
   /* Milestone status: "todo" | "active" | "done" */
   milestones: {
-    coursework: { status: "active", note: "10 of 33 units touched. MOD-07 and MOD-08 both scored 3 back to back — RPN reasoning and living-document upkeep both landed clean. MOD-03 through MOD-06 still sit at 2 and are due a re-check (charter scope, red-input strategy, TAKT time, Gemba risk). MOD-02 (Project selection) held back, unscored." },
+    coursework: { status: "active", note: "11 of 33 units touched. MOD-09 broke the two-block 3-streak — mixed up mean/median with population/sample on Q1, needed the mean+3SD calculation done for him on Q3 before he could conclude cases would exceed target. This is foundational for everything downstream (capability, hypothesis testing) and worth a re-drill. MOD-03 through MOD-06 still sit at 2 and are overdue for a re-check (charter scope, red-input strategy, TAKT time, Gemba risk)." },
     exam:       { status: "todo",   note: "Locked until the coursework is done. Two attempts only." },
     project:    { status: "todo",   note: "Locked until the exam is passed. Scope it early anyway." }
   },
 
   /* What to do in the next one-hour block. */
   plan: {
-    nextUp: ["MOD-09", "MOD-10"],
-    note: "Basic statistics, then Basic quality tools — MOD-10 is where the Minitab 14-day trial should start, not before. Worth spending part of a block re-checking MOD-03 through MOD-06 before they go stale."
+    nextUp: ["MOD-10"],
+    note: "Basic quality tools — this is where the Minitab 14-day trial should start, not before. Given MOD-09's gaps, worth using part of this block to re-drill mean/median vs. population/sample and the mean+3SD defect-prediction logic before layering Minitab graphing on top of shaky fundamentals. MOD-03 through MOD-06 re-check is now five units deep and still owed."
   },
 
   /* One entry per one-hour block. */
@@ -108,6 +109,16 @@ window.ICBB_LOG = {
       notes: "Clean block, both application questions landed without correction. Correctly explained why a Detection score of 2 is good news, not bad (teammate had the scale backwards). Correctly reasoned RPN over raw Severity for prioritization, with real justification (a rarely-occurring, easily-caught high-severity failure can rank below a frequent, harder-to-catch low-severity one). On the FMEA-as-living-document question, honestly flagged uncertainty about whether it was covered, then reasoned to essentially the right answer (re-score after actions implemented to confirm RPN actually dropped) before being shown it was covered on Slide #3. Also started drafting the FMEA worksheet in chat against the real Social Current accreditation review process, building on the C&E Matrix's top weighted-total inputs (Submission completeness, Contact record, Submitted application) — qualitative content (failure modes/effects/causes) drafted, SEV/OCC/DET scores and current-controls detail still need his input before it's usable.",
       units: [
         { id: "MOD-08", from: 0, to: 3 }
+      ]
+    },
+    {
+      n: 8,
+      date: "2026-08-11",
+      minutes: 15,
+      title: "Basic Statistics",
+      notes: "Mixed. Q2 (mean vs. median for outlier robustness) landed cleanly with correct reasoning, no correction needed. Q1 had a real conceptual mix-up — substituted 'median' for 'sample mean' when the actual distinction being tested was population vs. sample, not mean vs. median. Q3 needed real scaffolding: named the right tool (3 standard deviations) but couldn't complete the mean+3SD calculation independently or state the conclusion until it was worked through for him (14.2 + 3×3.5 = 24.7, exceeding the 20-day target despite no individual case in the sample doing so) — the same 'small sample looks clean, statistics say otherwise' logic from the ABC Manufacturing example.",
+      units: [
+        { id: "MOD-09", from: 0, to: 2 }
       ]
     }
   ]
