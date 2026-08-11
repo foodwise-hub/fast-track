@@ -19,20 +19,21 @@ window.ICBB_LOG = {
     "MOD-04": { s: 2, last: "2026-08-04", seen: ["2026-08-04"] },
     "MOD-05": { s: 2, last: "2026-08-06", seen: ["2026-08-06"] },
     "MOD-06": { s: 2, last: "2026-08-06", seen: ["2026-08-06"] },
-    "MOD-07": { s: 3, last: "2026-08-07", seen: ["2026-08-07"] }
+    "MOD-07": { s: 3, last: "2026-08-07", seen: ["2026-08-07"] },
+    "MOD-08": { s: 3, last: "2026-08-10", seen: ["2026-08-10"] }
   },
 
   /* Milestone status: "todo" | "active" | "done" */
   milestones: {
-    coursework: { status: "active", note: "9 of 33 units touched. MOD-07 broke the four-block streak of 2's — clean arithmetic and correct interpretation on the C&E Matrix, only one prompt needed. MOD-03 through MOD-06 still sit at 2 and are due a re-check (charter scope, red-input strategy, TAKT time, Gemba risk). MOD-02 (Project selection) held back, unscored." },
+    coursework: { status: "active", note: "10 of 33 units touched. MOD-07 and MOD-08 both scored 3 back to back — RPN reasoning and living-document upkeep both landed clean. MOD-03 through MOD-06 still sit at 2 and are due a re-check (charter scope, red-input strategy, TAKT time, Gemba risk). MOD-02 (Project selection) held back, unscored." },
     exam:       { status: "todo",   note: "Locked until the coursework is done. Two attempts only." },
     project:    { status: "todo",   note: "Locked until the exam is passed. Scope it early anyway." }
   },
 
   /* What to do in the next one-hour block. */
   plan: {
-    nextUp: ["MOD-08", "MOD-09"],
-    note: "FMEA (chains directly off MOD-07's top weighted totals), then Basic statistics — the start of the stats run that leads to Minitab at MOD-10. Build FMEA against the same real Social Current process used for the C&E Matrix so the two connect."
+    nextUp: ["MOD-09", "MOD-10"],
+    note: "Basic statistics, then Basic quality tools — MOD-10 is where the Minitab 14-day trial should start, not before. Worth spending part of a block re-checking MOD-03 through MOD-06 before they go stale."
   },
 
   /* One entry per one-hour block. */
@@ -97,6 +98,16 @@ window.ICBB_LOG = {
       notes: "First block to break the streak. One prompt needed to get the full answer on what C&E adds beyond the Input Map (priority ranking + correlation scoring + weighted-total math), but from there it was clean: correctly computed a real weighted-total sum (9×1 + 7×9 + 4×3 = 84) without hesitation, correctly interpreted what the number means, and reasoned soundly through an unstated extension question (why not build the FMEA around every input) while honestly flagging it wasn't explicitly covered rather than bluffing.",
       units: [
         { id: "MOD-07", from: 0, to: 3 }
+      ]
+    },
+    {
+      n: 7,
+      date: "2026-08-10",
+      minutes: 15,
+      title: "FMEA",
+      notes: "Clean block, both application questions landed without correction. Correctly explained why a Detection score of 2 is good news, not bad (teammate had the scale backwards). Correctly reasoned RPN over raw Severity for prioritization, with real justification (a rarely-occurring, easily-caught high-severity failure can rank below a frequent, harder-to-catch low-severity one). On the FMEA-as-living-document question, honestly flagged uncertainty about whether it was covered, then reasoned to essentially the right answer (re-score after actions implemented to confirm RPN actually dropped) before being shown it was covered on Slide #3. Also started drafting the FMEA worksheet in chat against the real Social Current accreditation review process, building on the C&E Matrix's top weighted-total inputs (Submission completeness, Contact record, Submitted application) — qualitative content (failure modes/effects/causes) drafted, SEV/OCC/DET scores and current-controls detail still need his input before it's usable.",
+      units: [
+        { id: "MOD-08", from: 0, to: 3 }
       ]
     }
   ]
