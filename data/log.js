@@ -21,20 +21,21 @@ window.ICBB_LOG = {
     "MOD-06": { s: 2, last: "2026-08-06", seen: ["2026-08-06"] },
     "MOD-07": { s: 3, last: "2026-08-07", seen: ["2026-08-07"] },
     "MOD-08": { s: 3, last: "2026-08-10", seen: ["2026-08-10"] },
-    "MOD-09": { s: 2, last: "2026-08-11", seen: ["2026-08-11"] }
+    "MOD-09": { s: 2, last: "2026-08-11", seen: ["2026-08-11"] },
+    "MOD-10": { s: 3, last: "2026-08-11", seen: ["2026-08-11"] }
   },
 
   /* Milestone status: "todo" | "active" | "done" */
   milestones: {
-    coursework: { status: "active", note: "11 of 33 units touched. MOD-09 broke the two-block 3-streak — mixed up mean/median with population/sample on Q1, needed the mean+3SD calculation done for him on Q3 before he could conclude cases would exceed target. This is foundational for everything downstream (capability, hypothesis testing) and worth a re-drill. MOD-03 through MOD-06 still sit at 2 and are overdue for a re-check (charter scope, red-input strategy, TAKT time, Gemba risk)." },
+    coursework: { status: "active", note: "12 of 33 units touched. MOD-10 back to a clean 3 — Pareto-to-time-series chaining and box-plot tool choice both landed with only one wording correction. Minitab trial can now start (MOD-10 threshold cleared). Backlog owed a re-check: MOD-03 through MOD-06 (charter scope, red-input strategy, TAKT time, Gemba risk) and MOD-09 (mean/median mix-up, mean+3SD calc) — six units now, none past 10 days yet but the oldest (MOD-03/04) are at 7." },
     exam:       { status: "todo",   note: "Locked until the coursework is done. Two attempts only." },
     project:    { status: "todo",   note: "Locked until the exam is passed. Scope it early anyway." }
   },
 
   /* What to do in the next one-hour block. */
   plan: {
-    nextUp: ["MOD-10"],
-    note: "Basic quality tools — this is where the Minitab 14-day trial should start, not before. Given MOD-09's gaps, worth using part of this block to re-drill mean/median vs. population/sample and the mean+3SD defect-prediction logic before layering Minitab graphing on top of shaky fundamentals. MOD-03 through MOD-06 re-check is now five units deep and still owed."
+    nextUp: ["MOD-11", "MOD-12"],
+    note: "Measurement System Analysis, then Capability Analysis — both project-tool units, both lean directly on MOD-09's mean/SD fundamentals (Gage R&R math, Pp/Ppk, DPMO). This is where that gap gets stress-tested, not a good place to skip the re-drill. MOD-03 through MOD-06 + MOD-09 re-check is now six units deep."
   },
 
   /* One entry per one-hour block. */
@@ -119,6 +120,16 @@ window.ICBB_LOG = {
       notes: "Mixed. Q2 (mean vs. median for outlier robustness) landed cleanly with correct reasoning, no correction needed. Q1 had a real conceptual mix-up — substituted 'median' for 'sample mean' when the actual distinction being tested was population vs. sample, not mean vs. median. Q3 needed real scaffolding: named the right tool (3 standard deviations) but couldn't complete the mean+3SD calculation independently or state the conclusion until it was worked through for him (14.2 + 3×3.5 = 24.7, exceeding the 20-day target despite no individual case in the sample doing so) — the same 'small sample looks clean, statistics say otherwise' logic from the ABC Manufacturing example.",
       units: [
         { id: "MOD-09", from: 0, to: 2 }
+      ]
+    },
+    {
+      n: 9,
+      date: "2026-08-11",
+      minutes: 15,
+      title: "Basic Quality Tools",
+      notes: "Clean recovery. Q1 landed immediately with a sharp application — chaining Pareto (find the dominant cause) into a time series plot (prove the fix worked), plus correctly reasoned that a flat 10-reasons-at-10% distribution means no single easy target. Q2 needed one precision correction: had the direction right (low p-value on normality test is bad news) but the explanation was vague ('something is seriously wrong') until pushed to state the actual claim — data doesn't fit a normal distribution. Q3 clean: correctly chose box plot over time series plot for comparing turnaround across caseworkers, with correct reasoning about using the Diagnostic Report to confirm real vs. apparent differences.",
+      units: [
+        { id: "MOD-10", from: 0, to: 3 }
       ]
     }
   ]
