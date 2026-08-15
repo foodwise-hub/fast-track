@@ -22,20 +22,21 @@ window.ICBB_LOG = {
     "MOD-07": { s: 3, last: "2026-08-07", seen: ["2026-08-07"] },
     "MOD-08": { s: 3, last: "2026-08-10", seen: ["2026-08-10"] },
     "MOD-09": { s: 2, last: "2026-08-11", seen: ["2026-08-11"] },
-    "MOD-10": { s: 3, last: "2026-08-11", seen: ["2026-08-11"] }
+    "MOD-10": { s: 3, last: "2026-08-11", seen: ["2026-08-11"] },
+    "MOD-11": { s: 3, last: "2026-08-15", seen: ["2026-08-15"] }
   },
 
   /* Milestone status: "todo" | "active" | "done" */
   milestones: {
-    coursework: { status: "active", note: "12 of 33 units touched. MOD-10 back to a clean 3 — Pareto-to-time-series chaining and box-plot tool choice both landed with only one wording correction. Minitab trial can now start (MOD-10 threshold cleared). Backlog owed a re-check: MOD-03 through MOD-06 (charter scope, red-input strategy, TAKT time, Gemba risk) and MOD-09 (mean/median mix-up, mean+3SD calc) — six units now, none past 10 days yet but the oldest (MOD-03/04) are at 7." },
+    coursework: { status: "active", note: "13 of 33 units touched. MOD-11 held the stats fundamentals under pressure right after MOD-09's shakiness — repeatability/reproducibility/Gage-vs-Attribute distinctions all correct, one precision correction. MOD-03 and MOD-04 are now 11 days stalled at score 2 — past the 10-day threshold. MOD-05/MOD-06 are 9 days out. MOD-09 is 4 days out." },
     exam:       { status: "todo",   note: "Locked until the coursework is done. Two attempts only." },
     project:    { status: "todo",   note: "Locked until the exam is passed. Scope it early anyway." }
   },
 
   /* What to do in the next one-hour block. */
   plan: {
-    nextUp: ["MOD-11", "MOD-12"],
-    note: "Measurement System Analysis, then Capability Analysis — both project-tool units, both lean directly on MOD-09's mean/SD fundamentals (Gage R&R math, Pp/Ppk, DPMO). This is where that gap gets stress-tested, not a good place to skip the re-drill. MOD-03 through MOD-06 + MOD-09 re-check is now six units deep."
+    nextUp: ["MOD-03", "MOD-04"],
+    note: "STALLED 10+ DAYS — re-check takes priority over new material per the debrief rules. MOD-03 (charter scope-vs-SIPOC distinction) and MOD-04 (red-input strategy under the 50%-variation gate) are both 11 days old at score 2. MOD-05/06 are close behind at 9 days. New units (MOD-12 Capability Analysis) wait until this backlog is cleared."
   },
 
   /* One entry per one-hour block. */
@@ -130,6 +131,16 @@ window.ICBB_LOG = {
       notes: "Clean recovery. Q1 landed immediately with a sharp application — chaining Pareto (find the dominant cause) into a time series plot (prove the fix worked), plus correctly reasoned that a flat 10-reasons-at-10% distribution means no single easy target. Q2 needed one precision correction: had the direction right (low p-value on normality test is bad news) but the explanation was vague ('something is seriously wrong') until pushed to state the actual claim — data doesn't fit a normal distribution. Q3 clean: correctly chose box plot over time series plot for comparing turnaround across caseworkers, with correct reasoning about using the Diagnostic Report to confirm real vs. apparent differences.",
       units: [
         { id: "MOD-10", from: 0, to: 3 }
+      ]
+    },
+    {
+      n: 10,
+      date: "2026-08-15",
+      minutes: 15,
+      title: "Measurement System Analysis",
+      notes: "Solid, the stats fundamentals held up here despite MOD-09's earlier shakiness. Q1 clean and complete on the first pass — correctly distinguished precision (repeatability, same appraiser) from accuracy, and named the fix (compare against a known standard). Q2 correct on reproducibility vs. repeatability and good instinct to run a formal study to isolate caseworker-vs-process, but needed one precision correction: named generic 'Gage R&R' when the categorical compliant/non-compliant data actually calls for Attribute Agreement Analysis specifically. Q3 immediate and correct — recalled the 70-95% acceptable accuracy band without hesitation.",
+      units: [
+        { id: "MOD-11", from: 0, to: 3 }
       ]
     }
   ]
