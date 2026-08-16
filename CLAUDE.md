@@ -124,6 +124,14 @@ it yourself and confirm.
 **Step 2 — quiz him. 4 to 6 questions.** Application, not recall: given a scenario,
 which tool applies and why. One at a time. No answer until he commits.
 
+**If a question includes numbers, actually compute them from the formula before
+asking — never invent plausible-looking outputs.** A MOD-12 debrief once used
+made-up Pp/Ppk values that didn't derive from the stated mean and standard
+deviation; he caught the inconsistency himself and it cost real time sorting out
+whether the gap was his misunderstanding or a broken example. He was explicit
+that this matters for his learning process — verify the arithmetic before it
+reaches him, not after.
+
 **Step 3 — score each unit yourself.** He does not set his own score.
 
 | Score | Meaning |
