@@ -23,12 +23,13 @@ window.ICBB_LOG = {
     "MOD-08": { s: 3, last: "2026-08-10", seen: ["2026-08-10"] },
     "MOD-09": { s: 2, last: "2026-08-11", seen: ["2026-08-11"] },
     "MOD-10": { s: 3, last: "2026-08-11", seen: ["2026-08-11"] },
-    "MOD-11": { s: 3, last: "2026-08-15", seen: ["2026-08-15"] }
+    "MOD-11": { s: 3, last: "2026-08-15", seen: ["2026-08-15"] },
+    "MOD-12": { s: 2, last: "2026-08-16", seen: ["2026-08-16"] }
   },
 
   /* Milestone status: "todo" | "active" | "done" */
   milestones: {
-    coursework: { status: "active", note: "13 of 33 units touched. MOD-11 held the stats fundamentals under pressure right after MOD-09's shakiness — repeatability/reproducibility/Gage-vs-Attribute distinctions all correct, one precision correction. MOD-03 and MOD-04 are now 11 days stalled at score 2 — past the 10-day threshold. MOD-05/MOD-06 are 9 days out. MOD-09 is 4 days out." },
+    coursework: { status: "active", note: "14 of 33 units touched. MOD-12 scored 2 — Pp vs. Ppk needed two full rounds of correction on the same spread-vs-centering confusion. This is the second block in a row (after MOD-11's priority-skip) where new material was taken over the stalled backlog. MOD-03/MOD-04 now 12 days stalled, MOD-05/MOD-06 now 10 days stalled, MOD-09 5 days. Six units overdue for re-check." },
     exam:       { status: "todo",   note: "Locked until the coursework is done. Two attempts only." },
     project:    { status: "todo",   note: "Locked until the exam is passed. Scope it early anyway." }
   },
@@ -36,7 +37,7 @@ window.ICBB_LOG = {
   /* What to do in the next one-hour block. */
   plan: {
     nextUp: ["MOD-03", "MOD-04"],
-    note: "STALLED 10+ DAYS — re-check takes priority over new material per the debrief rules. MOD-03 (charter scope-vs-SIPOC distinction) and MOD-04 (red-input strategy under the 50%-variation gate) are both 11 days old at score 2. MOD-05/06 are close behind at 9 days. New units (MOD-12 Capability Analysis) wait until this backlog is cleared."
+    note: "STALLED 10+ DAYS, second block this has been flagged and deferred. MOD-03 (charter scope-vs-SIPOC) and MOD-04 (red-input strategy) are 12 days old at score 2; MOD-05/06 have now also crossed 10 days. Recommend clearing at least MOD-03/04 before MOD-13 (t-Tests/ANOVA/Chi-Squared) — that unit is dense enough on its own without a growing backlog underneath it."
   },
 
   /* One entry per one-hour block. */
@@ -141,6 +142,16 @@ window.ICBB_LOG = {
       notes: "Solid, the stats fundamentals held up here despite MOD-09's earlier shakiness. Q1 clean and complete on the first pass — correctly distinguished precision (repeatability, same appraiser) from accuracy, and named the fix (compare against a known standard). Q2 correct on reproducibility vs. repeatability and good instinct to run a formal study to isolate caseworker-vs-process, but needed one precision correction: named generic 'Gage R&R' when the categorical compliant/non-compliant data actually calls for Attribute Agreement Analysis specifically. Q3 immediate and correct — recalled the 70-95% acceptable accuracy band without hesitation.",
       units: [
         { id: "MOD-11", from: 0, to: 3 }
+      ]
+    },
+    {
+      n: 11,
+      date: "2026-08-16",
+      minutes: 15,
+      title: "Capability Analysis",
+      notes: "Q1 clean and correct — normality check as prerequisite before Pp/Ppk formulas apply. Q2 was a real struggle: attributed the Pp-vs-Ppk gap to a change in spread/'clustering' rather than centering, twice, even after the mechanism (same standard deviation, different reference point — distance to nearest spec limit vs. half the full spec width) was explained directly. Correctly identified the drift direction (toward USL, consistent with mean 15.3 vs. midpoint target 15) but kept reaching for spread-based language to explain the Ppk drop. Pp-vs-Ppk centering confusion is a common exam trap and this one didn't fully resolve in one sitting.",
+      units: [
+        { id: "MOD-12", from: 0, to: 2 }
       ]
     }
   ]
