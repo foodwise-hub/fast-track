@@ -24,12 +24,12 @@ window.ICBB_LOG = {
     "MOD-09": { s: 2, last: "2026-08-11", seen: ["2026-08-11"] },
     "MOD-10": { s: 3, last: "2026-08-11", seen: ["2026-08-11"] },
     "MOD-11": { s: 3, last: "2026-08-15", seen: ["2026-08-15"] },
-    "MOD-12": { s: 2, last: "2026-08-16", seen: ["2026-08-16"] }
+    "MOD-12": { s: 3, last: "2026-08-16", seen: ["2026-08-16"] }
   },
 
   /* Milestone status: "todo" | "active" | "done" */
   milestones: {
-    coursework: { status: "active", note: "14 of 33 units touched. MOD-12 scored 2 — Pp vs. Ppk needed two full rounds of correction on the same spread-vs-centering confusion. This is the second block in a row (after MOD-11's priority-skip) where new material was taken over the stalled backlog. MOD-03/MOD-04 now 12 days stalled, MOD-05/MOD-06 now 10 days stalled, MOD-09 5 days. Six units overdue for re-check." },
+    coursework: { status: "active", note: "14 of 33 units touched. MOD-12 revised to 3 after debrief — the Pp/Ppk example used in the quiz was numerically inconsistent (invented numbers, not derived from the given mean/σ), and he caught the contradiction himself using correct centering-vs-spread reasoning. Second block in a row where new material was taken over the stalled backlog. MOD-03/MOD-04 now 12 days stalled, MOD-05/MOD-06 now 10 days stalled, MOD-09 5 days. Six units overdue for re-check." },
     exam:       { status: "todo",   note: "Locked until the coursework is done. Two attempts only." },
     project:    { status: "todo",   note: "Locked until the exam is passed. Scope it early anyway." }
   },
@@ -149,9 +149,9 @@ window.ICBB_LOG = {
       date: "2026-08-16",
       minutes: 15,
       title: "Capability Analysis",
-      notes: "Q1 clean and correct — normality check as prerequisite before Pp/Ppk formulas apply. Q2 was a real struggle: attributed the Pp-vs-Ppk gap to a change in spread/'clustering' rather than centering, twice, even after the mechanism (same standard deviation, different reference point — distance to nearest spec limit vs. half the full spec width) was explained directly. Correctly identified the drift direction (toward USL, consistent with mean 15.3 vs. midpoint target 15) but kept reaching for spread-based language to explain the Ppk drop. Pp-vs-Ppk centering confusion is a common exam trap and this one didn't fully resolve in one sitting.",
+      notes: "Q1 clean and correct — normality check as prerequisite before Pp/Ppk formulas apply. Q2 initially rough — reached for spread/'clustering' language rather than centering to explain the Pp-vs-Ppk gap, needed two corrections on the terminology. But post-debrief he pushed back on the example itself: correctly reasoned that with mean=15.3 barely off a 15 target and constant spread, Pp and Ppk shouldn't diverge nearly as much as the quiz's invented numbers (0.87 vs 0.52) suggested. Recomputed: actual Ppk=0.75, Pp=0.79 for those inputs — nearly identical, confirming his instinct. The quiz scenario was numerically inconsistent, not his understanding. Catching that using correct centering-vs-spread reasoning is stronger evidence of mastery than a clean first-pass answer would have been. Corrected example for reference: mean=17.5 (same σ=2.1, USL=20, LSL=10) gives Pp=0.79, Ppk=0.40 — a real gap driven purely by centering.",
       units: [
-        { id: "MOD-12", from: 0, to: 2 }
+        { id: "MOD-12", from: 0, to: 3 }
       ]
     }
   ]
