@@ -24,12 +24,13 @@ window.ICBB_LOG = {
     "MOD-09": { s: 2, last: "2026-08-11", seen: ["2026-08-11"] },
     "MOD-10": { s: 3, last: "2026-08-11", seen: ["2026-08-11"] },
     "MOD-11": { s: 3, last: "2026-08-15", seen: ["2026-08-15"] },
-    "MOD-12": { s: 3, last: "2026-08-16", seen: ["2026-08-16"] }
+    "MOD-12": { s: 3, last: "2026-08-16", seen: ["2026-08-16"] },
+    "MOD-13": { s: 3, last: "2026-08-18", seen: ["2026-08-18"] }
   },
 
   /* Milestone status: "todo" | "active" | "done" */
   milestones: {
-    coursework: { status: "active", note: "14 of 33 units touched. MOD-12 revised to 3 after debrief — the Pp/Ppk example used in the quiz was numerically inconsistent (invented numbers, not derived from the given mean/σ), and he caught the contradiction himself using correct centering-vs-spread reasoning. Second block in a row where new material was taken over the stalled backlog. MOD-03/MOD-04 now 12 days stalled, MOD-05/MOD-06 now 10 days stalled, MOD-09 5 days. Six units overdue for re-check." },
+    coursework: { status: "active", note: "15 of 33 units touched. MOD-13 scored 3 — correct tool selection across all three tests (2-sample t, ANOVA, Chi-Squared) with only wording-level corrections. Third block in a row where new material was taken over the stalled backlog. MOD-03/MOD-04 now 14 days stalled, MOD-05/MOD-06 12 days, MOD-09 7 days. Six units still overdue." },
     exam:       { status: "todo",   note: "Locked until the coursework is done. Two attempts only." },
     project:    { status: "todo",   note: "Locked until the exam is passed. Scope it early anyway." }
   },
@@ -37,7 +38,7 @@ window.ICBB_LOG = {
   /* What to do in the next one-hour block. */
   plan: {
     nextUp: ["MOD-03", "MOD-04"],
-    note: "STALLED 10+ DAYS, second block this has been flagged and deferred. MOD-03 (charter scope-vs-SIPOC) and MOD-04 (red-input strategy) are 12 days old at score 2; MOD-05/06 have now also crossed 10 days. Recommend clearing at least MOD-03/04 before MOD-13 (t-Tests/ANOVA/Chi-Squared) — that unit is dense enough on its own without a growing backlog underneath it."
+    note: "STALLED 14+ DAYS, third block this has been flagged and deferred in favor of new material. MOD-03/MOD-04 (charter scope-vs-SIPOC, red-input strategy) and MOD-05/MOD-06 (TAKT time, Gemba risk) all overdue. This backlog is now larger than the run of clean scores on top of it — worth clearing before MOD-15 (Controlling the Process) closes out Green Belt."
   },
 
   /* One entry per one-hour block. */
@@ -152,6 +153,16 @@ window.ICBB_LOG = {
       notes: "Q1 clean and correct — normality check as prerequisite before Pp/Ppk formulas apply. Q2 initially rough — reached for spread/'clustering' language rather than centering to explain the Pp-vs-Ppk gap, needed two corrections on the terminology. But post-debrief he pushed back on the example itself: correctly reasoned that with mean=15.3 barely off a 15 target and constant spread, Pp and Ppk shouldn't diverge nearly as much as the quiz's invented numbers (0.87 vs 0.52) suggested. Recomputed: actual Ppk=0.75, Pp=0.79 for those inputs — nearly identical, confirming his instinct. The quiz scenario was numerically inconsistent, not his understanding. Catching that using correct centering-vs-spread reasoning is stronger evidence of mastery than a clean first-pass answer would have been. Corrected example for reference: mean=17.5 (same σ=2.1, USL=20, LSL=10) gives Pp=0.79, Ppk=0.40 — a real gap driven purely by centering.",
       units: [
         { id: "MOD-12", from: 0, to: 3 }
+      ]
+    },
+    {
+      n: 12,
+      date: "2026-08-18",
+      minutes: 20,
+      title: "t-Tests, ANOVA, Chi-Squared",
+      notes: "Correct tool selection on all three questions — 2-sample t-test, ANOVA over pairwise t-tests, Chi-Squared for two categorical variables — no hesitation on any of the three. Two wording-level corrections needed: Q1 embedded the practical significance threshold (1 day) into H0/Ha instead of using the standard equal-vs-not-equal framing; corrected cleanly on request. Q4's initial reasoning for why a t-test doesn't work was 'number of offices' rather than 'data type of the outcome variable' — corrected, then asked for the mechanism in detail and engaged with a full worked Chi-Squared example (observed vs. expected counts, χ²≈20.0, df=4, p<0.001) rather than just accepting the answer.",
+      units: [
+        { id: "MOD-13", from: 0, to: 3 }
       ]
     }
   ]
