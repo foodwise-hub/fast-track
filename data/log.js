@@ -26,12 +26,13 @@ window.ICBB_LOG = {
     "MOD-11": { s: 3, last: "2026-08-15", seen: ["2026-08-15"] },
     "MOD-12": { s: 3, last: "2026-08-16", seen: ["2026-08-16"] },
     "MOD-13": { s: 3, last: "2026-08-18", seen: ["2026-08-18"] },
-    "MOD-14": { s: 2, last: "2026-08-18", seen: ["2026-08-18"] }
+    "MOD-14": { s: 2, last: "2026-08-18", seen: ["2026-08-18"] },
+    "MOD-15": { s: 2, last: "2026-08-18", seen: ["2026-08-18"] }
   },
 
   /* Milestone status: "todo" | "active" | "done" */
   milestones: {
-    coursework: { status: "active", note: "16 of 33 units touched. MOD-14 scored 2 — R-squared interpretation took three full rounds to land (kept substituting 'individual data points' for 'dataset variation'), same shape as MOD-09's mean+3SD struggle. R² is load-bearing for DoE modules ahead. Fourth block in a row where new material was taken over the stalled backlog: MOD-03/MOD-04 now 14 days stalled, MOD-05/MOD-06 12 days, MOD-09 7 days." },
+    coursework: { status: "active", note: "17 of 33 units touched — all Green Belt units now have a real score except MOD-02 (still just watched). MOD-15 scored 2, closing Green Belt on a gap: control-plan content (KPIV + reaction plan) never landed after three attempts, and the MOD-12 capability-vs-stability connection had to be supplied. Fifth block in a row where new material won over the stalled backlog. MOD-03/MOD-04 now 14 days stalled, MOD-05/MOD-06 12 days, MOD-09 7 days — five units plus MOD-02 unscored, all Green Belt, all before Black Belt content even starts." },
     exam:       { status: "todo",   note: "Locked until the coursework is done. Two attempts only." },
     project:    { status: "todo",   note: "Locked until the exam is passed. Scope it early anyway." }
   },
@@ -39,7 +40,7 @@ window.ICBB_LOG = {
   /* What to do in the next one-hour block. */
   plan: {
     nextUp: ["MOD-03", "MOD-04"],
-    note: "STALLED 14+ DAYS, fourth block this has been flagged and deferred. Green Belt content finishes at MOD-15 — after that, this backlog either gets cleared or it rides all the way into Black Belt material and the exam. MOD-03/MOD-04 (charter scope-vs-SIPOC, red-input strategy), MOD-05/MOD-06 (TAKT time, Gemba risk), and MOD-09 (mean/median, mean+3SD) are all still open."
+    note: "STALLED 14+ DAYS, fifth block flagged and deferred. Green Belt content is now fully covered (MOD-02 aside) — every unit left to study going forward is either this backlog or new Black Belt material (MOD-16 onward). There's no more 'next new module' reason left to defer this; it's this backlog or Black Belt next, his call. MOD-03/MOD-04 (charter scope-vs-SIPOC, red-input strategy), MOD-05/MOD-06 (TAKT time, Gemba risk), MOD-09 (mean/median, mean+3SD) still open."
   },
 
   /* One entry per one-hour block. */
@@ -174,6 +175,16 @@ window.ICBB_LOG = {
       notes: "Q1 clean — correlation-not-causation landed immediately. Q3 correct on tool choice (multiple regression for two predictors, one continuous + one categorical) and asked for the mechanism rather than just accepting the answer; also missed that a separate tool (Response Optimizer) is needed on top of the regression to actually find the error-minimizing humidity level. Q2 was the real struggle: R-squared interpretation took three full rounds — kept restating it as '% of individual data points/errors' sharing a relationship with X, rather than '% of the dataset's total variation' explained by the model. Landed only after a concrete framing (scatter around the mean); then correctly extended the concept unprompted to reason that outliers would disproportionately skew R² via the squared-deviation math. Same shape as MOD-09's mean+3SD gap — a genuinely hard stats concept not sticking on first or second pass.",
       units: [
         { id: "MOD-14", from: 0, to: 2 }
+      ]
+    },
+    {
+      n: 14,
+      date: "2026-08-18",
+      minutes: 20,
+      title: "Controlling the Process",
+      notes: "Closes out Green Belt content on a mixed note. Q2 landed with the right tool (X-bar & R for subgroup data) but the reasoning needed correction — reached for 'constant sample count' instead of the actual mechanism (multiple measurements per subgroup lets you compute a Range, separating within-day from day-to-day variation). Q1: honestly flagged not remembering the MOD-12 capability connection (stable ≠ capable) rather than guessing — good instinct, but the answer had to be supplied. Q3 took three attempts and never independently landed on what a Control Plan actually contains (KPIV monitoring + reaction plan — who does what if a parameter drifts); kept drifting toward adjacent Control-phase concepts (dashboards, visual controls) instead, and the answer was ultimately given directly.",
+      units: [
+        { id: "MOD-15", from: 0, to: 2 }
       ]
     }
   ]
