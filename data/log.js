@@ -25,12 +25,13 @@ window.ICBB_LOG = {
     "MOD-10": { s: 3, last: "2026-08-11", seen: ["2026-08-11"] },
     "MOD-11": { s: 3, last: "2026-08-15", seen: ["2026-08-15"] },
     "MOD-12": { s: 3, last: "2026-08-16", seen: ["2026-08-16"] },
-    "MOD-13": { s: 3, last: "2026-08-18", seen: ["2026-08-18"] }
+    "MOD-13": { s: 3, last: "2026-08-18", seen: ["2026-08-18"] },
+    "MOD-14": { s: 2, last: "2026-08-18", seen: ["2026-08-18"] }
   },
 
   /* Milestone status: "todo" | "active" | "done" */
   milestones: {
-    coursework: { status: "active", note: "15 of 33 units touched. MOD-13 scored 3 — correct tool selection across all three tests (2-sample t, ANOVA, Chi-Squared) with only wording-level corrections. Third block in a row where new material was taken over the stalled backlog. MOD-03/MOD-04 now 14 days stalled, MOD-05/MOD-06 12 days, MOD-09 7 days. Six units still overdue." },
+    coursework: { status: "active", note: "16 of 33 units touched. MOD-14 scored 2 — R-squared interpretation took three full rounds to land (kept substituting 'individual data points' for 'dataset variation'), same shape as MOD-09's mean+3SD struggle. R² is load-bearing for DoE modules ahead. Fourth block in a row where new material was taken over the stalled backlog: MOD-03/MOD-04 now 14 days stalled, MOD-05/MOD-06 12 days, MOD-09 7 days." },
     exam:       { status: "todo",   note: "Locked until the coursework is done. Two attempts only." },
     project:    { status: "todo",   note: "Locked until the exam is passed. Scope it early anyway." }
   },
@@ -38,7 +39,7 @@ window.ICBB_LOG = {
   /* What to do in the next one-hour block. */
   plan: {
     nextUp: ["MOD-03", "MOD-04"],
-    note: "STALLED 14+ DAYS, third block this has been flagged and deferred in favor of new material. MOD-03/MOD-04 (charter scope-vs-SIPOC, red-input strategy) and MOD-05/MOD-06 (TAKT time, Gemba risk) all overdue. This backlog is now larger than the run of clean scores on top of it — worth clearing before MOD-15 (Controlling the Process) closes out Green Belt."
+    note: "STALLED 14+ DAYS, fourth block this has been flagged and deferred. Green Belt content finishes at MOD-15 — after that, this backlog either gets cleared or it rides all the way into Black Belt material and the exam. MOD-03/MOD-04 (charter scope-vs-SIPOC, red-input strategy), MOD-05/MOD-06 (TAKT time, Gemba risk), and MOD-09 (mean/median, mean+3SD) are all still open."
   },
 
   /* One entry per one-hour block. */
@@ -163,6 +164,16 @@ window.ICBB_LOG = {
       notes: "Correct tool selection on all three questions — 2-sample t-test, ANOVA over pairwise t-tests, Chi-Squared for two categorical variables — no hesitation on any of the three. Two wording-level corrections needed: Q1 embedded the practical significance threshold (1 day) into H0/Ha instead of using the standard equal-vs-not-equal framing; corrected cleanly on request. Q4's initial reasoning for why a t-test doesn't work was 'number of offices' rather than 'data type of the outcome variable' — corrected, then asked for the mechanism in detail and engaged with a full worked Chi-Squared example (observed vs. expected counts, χ²≈20.0, df=4, p<0.001) rather than just accepting the answer.",
       units: [
         { id: "MOD-13", from: 0, to: 3 }
+      ]
+    },
+    {
+      n: 13,
+      date: "2026-08-18",
+      minutes: 20,
+      title: "Correlation & Regression",
+      notes: "Q1 clean — correlation-not-causation landed immediately. Q3 correct on tool choice (multiple regression for two predictors, one continuous + one categorical) and asked for the mechanism rather than just accepting the answer; also missed that a separate tool (Response Optimizer) is needed on top of the regression to actually find the error-minimizing humidity level. Q2 was the real struggle: R-squared interpretation took three full rounds — kept restating it as '% of individual data points/errors' sharing a relationship with X, rather than '% of the dataset's total variation' explained by the model. Landed only after a concrete framing (scatter around the mean); then correctly extended the concept unprompted to reason that outliers would disproportionately skew R² via the squared-deviation math. Same shape as MOD-09's mean+3SD gap — a genuinely hard stats concept not sticking on first or second pass.",
+      units: [
+        { id: "MOD-14", from: 0, to: 2 }
       ]
     }
   ]
